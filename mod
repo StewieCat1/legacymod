@@ -2028,45 +2028,44 @@ func:function()
 		req:{'burial':true},
 		category:'civil',
 	});
-	
-	new G.Unit({
-		name:'mud shelter',
-		desc:'@provides 3 [housing]<>Basic, frail dwelling in which a small family can live.',
-		icon:[9,2],
-		cost:{'mud':50},
-		use:{'land':1},
-		//require:{'worker':1,'knapped tools':1},
-		effects:[
-			{type:'provide',what:{'housing':3}},
-			{type:'waste',chance:1/1000}
-		],
-		req:{'sedentism':true},
-		category:'housing',
-	});
 	new G.Unit({
 		name:'branch shelter',
-		desc:'@provides 3 [housing]<>Basic, very frail dwelling in which a small family can live.',
+		desc:'@provides 2 [housing]<>Basic, very frail dwelling in which a couple of people can live.',
 		icon:[10,2],
 		cost:{'stick':50},
 		use:{'land':1},
 		//require:{'worker':1,'knapped tools':1},
 		effects:[
-			{type:'provide',what:{'housing':3}},
+			{type:'provide',what:{'housing':2}},
 			{type:'waste',chance:3/1000}
 		],
 		req:{'sedentism':true},
 		category:'housing',
 	});
 	new G.Unit({
+		name:'mud shelter',
+		desc:'@provides 4 [housing]<>Basic, frail dwelling in which a small family can live.',
+		icon:[9,2],
+		cost:{'mud':50},
+		use:{'land':1},
+		//require:{'worker':1,'knapped tools':1},
+		effects:[
+			{type:'provide',what:{'housing':4}},
+			{type:'waste',chance:1/1000}
+		],
+		req:{'sedentism':true},
+		category:'housing',
+	});
+	new G.Unit({
 		name:'hut',
-		desc:'@provides 5 [housing]<>Small dwelling built out of hardened mud and branches.',
+		desc:'@provides 6 [housing]<>Small dwelling built out of hardened mud and branches.',
 		icon:[11,2],
 		cost:{'archaic building materials':100},
 		use:{'land':1},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
-			{type:'provide',what:{'housing':5}},
-			{type:'waste',chance:0.1/1000}
+			{type:'provide',what:{'housing':6}},
+			{type:'waste',chance:0.3/1000}
 		],
 		req:{'building':true},
 		category:'housing',
@@ -2080,7 +2079,7 @@ func:function()
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'housing':8}},
-			{type:'waste',chance:0.03/1000}
+			{type:'waste',chance:0.1/1000}
 		],
 		req:{'cities':true},
 		category:'housing',
@@ -2094,6 +2093,20 @@ func:function()
 		//require:{'worker':3,'metal tools':3},
 		effects:[
 			{type:'provide',what:{'housing':10}},
+			{type:'waste',chance:0.03/1000}
+		],
+		req:{'construction':true},
+		category:'housing',
+	});
+	new G.Unit({
+		name:'modern house',
+		desc:'@provides 12 [housing]<>A more modern home that can hold a large family.',
+		icon:[21,3],
+		cost:{'advanced building materials':100},
+		use:{'land':1},
+		//require:{'worker':3,'metal tools':3},
+		effects:[
+			{type:'provide',what:{'housing':12}},
 			{type:'waste',chance:0.01/1000}
 		],
 		req:{'construction':true},
