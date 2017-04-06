@@ -767,7 +767,7 @@ func:function()
 		icon:[12,5],
 		hidden:true,
 	});
-		new G.Res({
+	new G.Res({
 		name:'water storage',
 		desc:'Each [water storage] unit slows down decay for one [water] unit.//The number on the left is how much water storage is occupied, while the number on the right is how much you have in total.',
 		icon:[7,6],
@@ -1363,7 +1363,7 @@ func:function()
 	});
 	new G.Res({
 		name:'bucket',
-		desc:'Each basket stores 25 [water].//Will decay over time.',
+		desc:'Each bucket stores 25 [water].//Will decay over time.',
 		icon:[14,7],
 		category:'misc',
 		tick:function(me,tick)
