@@ -8,62 +8,27 @@ requires:['Default dataset*'],
 sheets:{'cookieSheet':'https://raw.githubusercontent.com/Generatoror/hello-world/master/sprits.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function()
 {
-
-	new G.Res({
-		name:'wheat',
-		desc:'[wheat] is not very tasty nor healthy',
-		icon:[0,0,'cookieSheet'],
-		turnToByContext:{'eat':{'health':0.01,'happiness':0.01},'decay':{'spoiled food':0.5}},//this basically translates to : "when eaten, generate some health and happiness; when rotting, turn into either nothing or some spoiled food"
-		partOf:'food',
-		category:'food',
-	});
-	new G.Res({
-		name:'cookie',
-		desc:'Made from [water] and the [wheat], this [cookie] and gets popular easily.',
-		icon:[1,0,'cookieSheet'],
-		turnToByContext:{'eat':{'health':0.005,'happiness':1},'decay':{'cookie':0.95,'spoiled food':0.05}},//that last part makes hot sauce effectively have a 95% chance of simply not rotting (in effect, it decays into itself)
-		partOf:'food',
-		category:'food',
-	});
 	
 	//Then we augment the base data to incorporate our new resources :
 		//adding wheat as something that can be gathered from grass
-	G.getDict('grass').res['gather']['wheat']=3;
 		//adding a new mode to furnace so they can make hot sauce from hot peppers
-	G.getDict('furnace').modes['cookie']={name:'Make cookies',desc:'Turn 5 [wheat] and 2 [water] into 1 [cookie].',req:{'cookie preparing':true}};
-		//adding a new effect to artisans that handles the actual hot sauce preparing and is only active when the unit has the mode "hot sauce"
-	G.getDict('furnace').effects.push({type:'convert',from:{'wheat':5,'water':2},into:{'cookie':2},every:5,mode:'cookie'});
+	G.getDict('mine').modes['gems']='gems':{name:'Gems',icon:[7,9],desc:'Mine for [gems] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}};
+	G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'gems':50},max:30,mode:'gems'});
+	G.getDict('kiln').modes['glass']='glass':{name:'Blow glass',icon:[4,8],desc:'Produce 5 [glass] out of 1 [sand].',use:{'worker':1,'metal tools':1},req:{}};
+	G.getDict('kiln').effects.push({type:'convert',from:{'sand':1},into:{'glass':5},every:5,mode:'glass'});
 	
 	//Then we add a new technology which is required by the artisans to gain access to the "hot sauce" mode :
 	new G.Tech({
-		name:'cookie preparing',
-		desc:'@[furnace]s can now produce [cookie]s from [wheat] and [water]//This special recipe allows a skilled craftsman to fully express the complex aromas present in hot peppers.',
-		icon:[0,1,'spicySheet'],
-		cost:{'insight':15},
-		req:{'cooking':true},
-	});
-        new G.Tech({
-		name:'healthy cookies',
-		desc:'@[cookie]s are now twice as healthy.',
-		icon:[0,1,'cookieSheet'],
-		cost:{'insight':15},
-		req:{'cooking':true},
-                effects:[
-			{type:'function',func:function(){G.getDict('cookie').turnToByContext['eat']['health']=0.1;}},//this is a custom function executed when we gain the trait
+		name:glass blowing',
+		desc:'@unlocks [kiln]s can now produce [glass] out of [sand].<>',
+		icon:[27,6],
+		cost:{'insight':40},
+		req:{'masonry':true},
+		effects:[
 		],
 	});
 	
-	//Finally, we add a trait that amplifies the benefits of consuming hot sauce; it will take on average 20 years to appear once the conditions (knowing the "Hot sauce preparing" tech) is fulfilled.
-	new G.Trait({
-		name:'Grandma´s love',
-		desc:'@[elder]s now give you cookies',
-		icon:[1,1,'cookieSheet'],
-		chance:5,
-		req:{'cookie preparing':true},
-		effects:[
-			{type:'function',func:function(){G.getDict('elder').effects.push({type:'convert',from:{'wheat':2,'water':1},into:{'cookie':1},every:25,mode:'cookie'});}},//this is a custom function executed when we gain the trait
-	        ],
-	});
+	//Finally, we add a trait that amplifies the benefits of consuming hot sauce; it will take on average 20 years to appear once the conditions (knowing the "Hot sauce preparing" tech) is fulfilled
 			
 	//There are many other ways of adding and changing content; refer to /data.js, the default dataset, if you want to see how everything is done in the base game. Good luck!
 }
