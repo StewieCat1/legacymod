@@ -1773,12 +1773,12 @@ func:function()
 			'off':G.MODE_OFF,
 			'bricks':{name:'Fire bricks',icon:[3,8],desc:'Produce 1 [brick] out of 4 [clay].',use:{'worker':1,'stone tools':1},req:{}},
 			'glass':{name:'Make glass',icon:[4,8],desc:'Produce 1 [glass] out of 2 [sand].',use:{'worker':1,'stone tools':1},req:{'sand melting': true}},
-			'cremate':{name:'Cremate corpses',icon:[8,3],desc:'Burn [corpses], preventing unhappiness and disease.',use:{'worker':1,'stone tools':1},req:{'cremation':true}},
+			'cremate':{name:'Cremate corpses',icon:[8,3],desc:'Burn [corpse]s, preventing unhappiness and disease.',use:{'worker':1,'stone tools':1},req:{'cremation':true}},
 		},
 		effects:[
 			{type:'convert',from:{'clay':4},into:{'brick':1},every:5,mode:'bricks'},
 			{type:'convert',from:{'sand':2},into:{'glass':1},every:5,mode:'glass'},
-			{type:'gather',what:{'corpse':-1},every:5,mode:'cremate'},
+			{type:'convert',from:{'corpse':1},into:{'corpse':0},every:1,mode:'cremate'},
 		],
 		gizmos:true,
 		req:{'masonry':true},
@@ -3019,7 +3019,7 @@ func:function()
 	});
 	new G.Tech({
 		name:'cremation',
-		desc:'@[kiln]s can now cremate [corpses].<>',
+		desc:'@[kiln]s can now cremate [corpse]s.<>',
 		icon:[18,1],
 		cost:{'insight':40},
 		req:{'masonry':true},
