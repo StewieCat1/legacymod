@@ -2987,7 +2987,7 @@ func:function()
 		],
 	});
 	new G.Tech({
-		name:glass blowing',
+		name:'glass blowing',
 		desc:'@unlocks [kiln]s can now produce [glass] out of [sand].<>',
 		icon:[27,6],
 		cost:{'insight':40},
