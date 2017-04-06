@@ -1023,6 +1023,7 @@ func:function()
 		icon:[2,6],
 		partOf:'archaic building materials',
 		category:'build',
+		tick:function(me,tick)
 	});
 	new G.Res({
 		name:'stick',
@@ -1030,6 +1031,7 @@ func:function()
 		icon:[0,6],
 		partOf:'archaic building materials',
 		category:'build',
+		tick:function(me,tick)
 	});
 	new G.Res({
 		name:'limestone',
@@ -1059,6 +1061,12 @@ func:function()
 		icon:[0,8],
 		partOf:'basic building materials',
 		category:'build',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.005;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			G.gain('stone',randomFloor(spent),'crumbling');
+		},
 	});
 	new G.Res({
 		name:'log',
@@ -1279,6 +1287,7 @@ func:function()
 		{
 			var toSpoil=me.amount*0.002;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			G.gain('primitive clothes',randomFloor(spent),'degradation');
 		},
 	});
 	
