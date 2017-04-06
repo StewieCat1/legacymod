@@ -1770,12 +1770,12 @@ func:function()
 		//upkeep:{'stick':3},//TODO : some fuel system
 		modes:{
 			'off':G.MODE_OFF,
-			'bricks':{name:'Fire bricks',icon:[3,8],desc:'Produce 10 [brick]s out of 1 [clay].',use:{'worker':1,'stone tools':1},req:{}},
-			'glass':{name:'Blow glass',icon:[4,8],desc:'Produce 5 [glass] out of 1 [sand].',use:{'worker':1,'metal tools':1},req:{}},
+			'bricks':{name:'Fire bricks',icon:[3,8],desc:'Produce 1 [brick] out of 4 [clay].',use:{'worker':1,'stone tools':1},req:{}},
+			'glass':{name:'Make glass',icon:[4,8],desc:'Produce 1 [glass] out of 2 [sand].',use:{'worker':1,'stone tools':1},req:{}},
 		},
 		effects:[
-			{type:'convert',from:{'clay':1},into:{'brick':10},every:5,mode:'bricks'},
-			{type:'convert',from:{'sand':1},into:{'glass':5},every:5,mode:'glass'},
+			{type:'convert',from:{'clay':4},into:{'brick':1},every:5,mode:'bricks'},
+			{type:'convert',from:{'sand':2},into:{'glass':1},every:5,mode:'glass'},
 		],
 		gizmos:true,
 		req:{'masonry':true},
@@ -3006,7 +3006,7 @@ func:function()
 		],
 	});
 	new G.Tech({
-		name:'glass blowing',
+		name:'sand melting',
 		desc:'@unlocks [kiln]s can now produce [glass] out of [sand].<>',
 		icon:[27,6],
 		cost:{'insight':40},
