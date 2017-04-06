@@ -230,7 +230,7 @@ func:function()
 		name:'coin',
 		displayName:'Coins',
 		desc:'[#coin,Currency] has a multitude of uses, from paying the upkeep on units to purchasing various things.//Before the invention of currency, [food] is used instead.',
-		icon:[13,1],
+		icon:[11,8],
 		replacement:'food',
 		tick:function(me,tick)
 		{
@@ -1939,13 +1939,15 @@ func:function()
 			'metal tools':{name:'Forge tools from soft metals',icon:[2,9],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
 			'hard metal tools':{name:'Forge tools from hard metals',icon:[2,9],desc:'Forge 3 [metal tools] out of 1 [hard metal ingot].',use:{'worker':1,'metal tools':1},req:{}},
 			'strong metal tools':{name:'Forge tools from strong metals',icon:[2,9],desc:'Forge 8 [metal tools] out of 1 [strong metal ingot].',use:{'worker':1,'metal tools':1},req:{}},
-			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true}},
+			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'metal tools':1},req:{'gold-working':true}},
+			'coin':{name:'Mint coins',icon:[11,8],desc:'Forge 10 [coin]s out of 1 [precious metal ingot].',use:{'worker':1,'metal tools':1},req:{'currency':true}},
 		},
 		effects:[
 			{type:'convert',from:{'soft metal ingot':2},into:{'metal tools':1},repeat:3,mode:'metal tools'},
 			{type:'convert',from:{'hard metal ingot':1},into:{'metal tools':3},repeat:3,mode:'hard metal tools'},
 			{type:'convert',from:{'strong metal ingot':1},into:{'metal tools':8},repeat:3,mode:'strong metal tools'},
 			{type:'convert',from:{'precious metal ingot':10},into:{'gold block':1},mode:'gold blocks'},
+			{type:'convert',from:{'precious metal ingot':11},into:{'coin':10},mode:'coin'},
 			{type:'waste',chance:0.001/1000},
 			//TODO : better metal tools, weapons etc
 		],
@@ -2921,6 +2923,15 @@ func:function()
 		icon:[29,5],
 		cost:{'insight':40},
 		req:{'smelting':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'currency',
+		desc:'@[blacksmith]s can now produce [coin]s',
+		icon:[23,8],
+		cost:{'insight':40},
+		req:{'gold-working':true},
 		effects:[
 		],
 	});
