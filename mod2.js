@@ -2151,13 +2151,13 @@ func:function()
 		name:'storage pit',
 		desc:'@provides 500 [food storage] and 500 [material storage]<>A simple hole in the ground, lined with stones.//Prevents some amount of food from perishing and some goods from being stolen, but may crumble away over time.',
 		icon:[12,2],
-		cost:{'archaic building materials':50},
+		cost:{'archaic building materials':100},
 		use:{'land':1},
 		//require:{'worker':2,'knapped tools':2},
 		effects:[
 			{type:'provide',what:{'added food storage':500}},
 			{type:'provide',what:{'added material storage':500}},
-			{type:'waste',chance:0.8/1000}
+			{type:'waste',chance:0.1/1000}
 		],
 		req:{'stockpiling':true},
 		category:'storage',
@@ -2166,12 +2166,12 @@ func:function()
 		name:'stockpile',
 		desc:'@provides 2500 [material storage]<>A simple building where resources are stored.//Slows material decay and deters theft somewhat, but may itself decay over time.',
 		icon:[22,4],
-		cost:{'archaic building materials':100},
+		cost:{'basic building materials':100},
 		use:{'land':1},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'added material storage':2500}},
-			{type:'waste',chance:0.1/1000}
+			{type:'waste',chance:0.01/1000}
 		],
 		req:{'stockpiling':true,'building':true},
 		category:'storage',
@@ -2180,7 +2180,7 @@ func:function()
 		name:'warehouse',
 		desc:'@provides 10000 [material storage]<>A large building for storing materials. Staffed with two guards to prevent theft.',
 		icon:[25,4],
-		cost:{'basic building materials':500},
+		cost:{'advanced building materials':250},
 		use:{'land':2},
 		staff:{'worker':2},
 		//require:{'worker':3,'stone tools':3},
@@ -2195,7 +2195,7 @@ func:function()
 		name:'granary',
 		desc:'@provides 2500 [food storage]<>A grain storage building built on stilts to prevent pests from getting in.',
 		icon:[23,4],
-		cost:{'archaic building materials':50,'basic building materials':50,'pot':15},
+		cost:{'basic building materials':75,'pot':15},
 		use:{'land':1},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
@@ -2209,7 +2209,7 @@ func:function()
 		name:'barn',
 		desc:'@provides 10000 [food storage]<>A large wooden building for storing food. A worker manages the grain to prevent rot.',
 		icon:[24,4],
-		cost:{'basic building materials':500},
+		cost:{'basic building materials':1000},
 		use:{'land':2},
 		staff:{'worker':1},
 		//require:{'worker':2,'stone tools':2},
