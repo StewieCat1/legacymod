@@ -767,21 +767,21 @@ func:function()
 		icon:[12,5],
 		hidden:true,
 	});
-	new G.Res({
-		name:'water storage',
-		desc:'Each [water storage] unit slows down decay for one [water] unit.//The number on the left is how much water storage is occupied, while the number on the right is how much you have in total.',
-		icon:[7,6],
-		tick:function(me,tick)
-		{
-			var amount=0;
-			amount+=G.getRes('bucket').amount*25;
-			me.amount=amount;
-		},
-		getDisplayAmount:function()
-		{
-			return B(Math.min(this.displayedAmount,G.getRes('water').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
-		},
-	});
+	//new G.Res({
+		//name:'water storage',
+		//desc:'Each [water storage] unit slows down decay for one [water] unit.//The number on the left is how much water storage is occupied, while the number on the right is how much you have in total.',
+		//icon:[7,6],
+		//tick:function(me,tick)
+		//{
+		//	var amount=0;
+		//	amount+=G.getRes('bucket').amount*25;
+		//	me.amount=amount;
+		//},
+		//getDisplayAmount:function()
+		//{
+		//	return B(Math.min(this.displayedAmount,G.getRes('water').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
+		//},
+	//});
 	
 	new G.Res({
 		name:'material storage',
@@ -1361,17 +1361,17 @@ func:function()
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 	});
-	new G.Res({
-		name:'bucket',
-		desc:'Each bucket stores 25 [water].//Will decay over time.',
-		icon:[14,7],
-		category:'misc',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.001;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-	});
+	//new G.Res({
+	//	name:'bucket',
+		//desc:'Each bucket stores 25 [water].//Will decay over time.',
+		//icon:[14,7],
+		//category:'misc',
+		//tick:function(me,tick)
+		//{
+		//	var toSpoil=me.amount*0.001;
+	//		var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+	//	},
+	//});
 	new G.Res({
 		name:'fire pit',
 		//desc:'Keeps your tribe warm and may prevent animals from attacking.//Used by some types of crafting.//Will burn out over time.',
@@ -1981,11 +1981,11 @@ func:function()
 		modes:{
 			'off':G.MODE_OFF,
 			'lumber':{name:'Cut logs into lumber',icon:[1,8],desc:'Cut [log]s into 3 [lumber] each.',use:{'worker':1,'stone tools':1},req:{}},
-			'bucket':{name:'Make buckets',icon:[14,7],desc:'Makes [bucket]s out of 2 [lumber] each.',use:{'worker':1,'stone tools':1},req:{}},
+			//'bucket':{name:'Make buckets',icon:[14,7],desc:'Makes [bucket]s out of 2 [lumber] each.',use:{'worker':1,'stone tools':1},req:{}},
 		},
 		effects:[
 			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
-			{type:'convert',from:{'lumber':2},into:{'bucket':1},repeat:2,mode:'bucket'},
+			//{type:'convert',from:{'lumber':2},into:{'bucket':1},repeat:2,mode:'bucket'},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
