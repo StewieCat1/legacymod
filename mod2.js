@@ -423,6 +423,7 @@ func:function()
 						if (G.checkPolicy('fertility rituals')=='on') birthRate*=1.2;
 						if (G.checkPolicy('population control')=='forbidden') birthRate*=0;
 						else if (G.checkPolicy('population control')=='limited') birthRate*=0.5;
+						else if (G.checkPolicy('population control')=='forced') birthRate*=1.5;
 						birthRate*=productionMult;
 						if (homeless>0 && me.amount>15) birthRate*=0.05;//harder to make babies if you have more than 15 people and some of them are homeless
 						var n=randomFloor(G.getRes('adult').amount*0.0003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
@@ -3321,21 +3322,21 @@ func:function()
 		],
 		category:'food',
 	});
-	//new G.Policy({
-		//name:'eat herbs',
-		//desc:'[herbs] are eaten, which lowers [happiness] and could have been used for other things.',
-		//icon:[6,12,4,6],
-		//cost:{'influence':1},
-		//startMode:'on',
-		//req:{'rules of food':true},
-		//effects:[
-		//	{type:'make part of',what:['herbs'],parent:'food'},
-		//],
-		//effectsOff:[
-		//	{type:'make part of',what:['herbs'],parent:''},
-		//],
-		//category:'food',
-	//});
+	new G.Policy({
+		name:'eat herbs',
+		desc:'[herb]s are eaten, which lowers [happiness] and could have been used for other things.',
+		icon:[6,12,4,6],
+		cost:{'influence':1},
+		startMode:'on',
+		req:{'rules of food':true},
+		effects:[
+			{type:'make part of',what:['herb'],parent:'food'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['herb'],parent:''},
+		],
+		category:'food',
+	});
 	new G.Policy({
 		name:'fertility rituals',
 		desc:'Improves birth rate by 20%. Consumes 1 [faith] every 20 days; will stop if you run out.',
@@ -3382,8 +3383,9 @@ func:function()
 		req:{'tribalism':true},
 		modes:{
 			'forbidden':{name:'Forbidden',desc:'Your people are not allowed to make children.//Your population will not grow.'},
-			'limited':{name:'Limited',desc:'Your people are only allowed to have one child.//Your population will grow slowly.'},
+			'limited':{name:'Limited',desc:'Your people are only allowed to have two children.//Your population will grow slowly.'},
 			'normal':{name:'Normal',desc:'You have no specific rules regarding children.//Your population will grow normally.'},
+			'forced':{name:'Forced',desc:'Your people are forced to have many children.//Your population will grow quickly.'},
 		},
 		category:'population',
 	});
