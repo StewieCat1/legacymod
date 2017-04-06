@@ -1603,7 +1603,7 @@ func:function()
 		upkeep:{'coin':0.1},
 		gizmos:true,
 		modes:{
-			'mix':{name:'Concrete',icon:[5,8],desc:'Turn [limestone] and [water] into [knapped tools].',use:{'metal tools':1}},
+			'mix':{name:'Concrete',icon:[5,8],desc:'Turn [limestone] and [water] into [concrete].',use:{'metal tools':1}},
 		},
 		effects:[
 			{type:'convert',from:{'limestone':3,'water':5},into:{'concrete':1},every:5,mode:'mix'},
