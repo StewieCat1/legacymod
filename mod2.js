@@ -714,8 +714,9 @@ func:function()
 				//G.getRes('happiness').amount+=(me.amount-G.getRes('happiness').amount)*0.01;
 				G.gain('happiness',me.amount*0.001,'health');
 				
-				var sickness=0.1;
-				sickness+=Math.pow(Math.max(0,G.getRes('population').amount-50),0.1)*0.1;//more people means more contagion
+				var sickness=0.01;
+				sickness+=Math.pow(Math.max(0,G.getRes('population').amount-50),0.1)*0.01;//more people means more contagion
+				sickness+=Math.pow(G.getRes('sick').amount,0.1)*0.05;//disease spreads
 				G.gain('health',-G.getRes('population').amount*(Math.random()*sickness),'disease');//people randomly get sick
 				var recovery=0.98;
 				me.amount*=recovery;//people recover over time
@@ -1771,11 +1772,13 @@ func:function()
 		modes:{
 			'off':G.MODE_OFF,
 			'bricks':{name:'Fire bricks',icon:[3,8],desc:'Produce 1 [brick] out of 4 [clay].',use:{'worker':1,'stone tools':1},req:{}},
-			'glass':{name:'Make glass',icon:[4,8],desc:'Produce 1 [glass] out of 2 [sand].',use:{'worker':1,'stone tools':1},req:{}},
+			'glass':{name:'Make glass',icon:[4,8],desc:'Produce 1 [glass] out of 2 [sand].',use:{'worker':1,'stone tools':1},req:{'sand melting': true}},
+			'cremate':{name:'Cremate corpses',icon:[8,3],desc:'Burn [corpses], preventing unhappiness and disease.',use:{'worker':1,'stone tools':1},req:{'cremation':true}},
 		},
 		effects:[
 			{type:'convert',from:{'clay':4},into:{'brick':1},every:5,mode:'bricks'},
 			{type:'convert',from:{'sand':2},into:{'glass':1},every:5,mode:'glass'},
+			{type:'gather',what:{'corpse':-1},every:5,mode:'cremate'},
 		],
 		gizmos:true,
 		req:{'masonry':true},
@@ -3007,8 +3010,17 @@ func:function()
 	});
 	new G.Tech({
 		name:'sand melting',
-		desc:'@unlocks [kiln]s can now produce [glass] out of [sand].<>',
+		desc:'@[kiln]s can now produce [glass] out of [sand].<>',
 		icon:[27,6],
+		cost:{'insight':40},
+		req:{'masonry':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'cremation',
+		desc:'@[kiln]s can now cremate [corpses].<>',
+		icon:[18,1],
 		cost:{'insight':40},
 		req:{'masonry':true},
 		effects:[
