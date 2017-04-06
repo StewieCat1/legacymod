@@ -3179,7 +3179,7 @@ func:function()
 			'sufficient':{name:'Sufficient',desc:'Your people receive a full portion per day.'},
 			'plentiful':{name:'Plentiful',desc:'Your people receive a portion and a half per day.'},
 			'generous':{name:'Generous',desc:'Your people receive two portions per day.'},
-			'fattening':{name:'Generous',desc:'Your people receive three portions per day.<br>Lowers [health] due to obesity.'},
+			'fattening':{name:'Fattening',desc:'Your people receive three portions per day.<br>Lowers [health] due to obesity.'},
 		},
 		category:'food',
 	});
