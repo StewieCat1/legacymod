@@ -1594,7 +1594,23 @@ func:function()
 		req:{'stone-knapping':true},
 		category:'crafting',
 	});
-	
+	new G.Unit({
+		name:'concrete mixer',
+		desc:'@mixes [limestone] with [water] to make concrete.',
+		icon:[6,2],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.1},
+		gizmos:true,
+		modes:{
+			'mix':{name:'Concrete',icon:[5,8],desc:'Turn [limestone] and [water] into [knapped tools].',use:{'metal tools':1}},
+		},
+		effects:[
+			{type:'convert',from:{'limestone':3,'water':5},into:{'concrete':1},every:5,mode:'mix'},
+		],
+		req:{'concrete pouring':true},
+		category:'crafting',
+	});
 	new G.Unit({
 		name:'carver',
 		desc:'@starts with the ability to turn [stone]s or [bone]s into [statuette]s@gains more modes as technology progresses<>A [carver] uses fine hand-crafting to produce goods out of wood, stone and bone.',
@@ -2995,6 +3011,15 @@ func:function()
 		icon:[27,6],
 		cost:{'insight':40},
 		req:{'masonry':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'concrete pouring',
+		desc:'@unlocks [concrete mixer]s, who produce [concrete] out of [limestone] and [water].<>',
+		icon:[25,6],
+		cost:{'insight':40},
+		req:{'quarrying':true},
 		effects:[
 		],
 	});
