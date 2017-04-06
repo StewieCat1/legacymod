@@ -281,7 +281,7 @@ func:function()
 					if (rations=='none') {toConsume=0;G.gain('happiness',-me.amount*3,'water rations');G.gain('health',-me.amount*2,'water rations');}
 					else if (rations=='meager') {toConsume*=0.5;G.gain('happiness',-me.amount*1,'water rations');G.gain('health',-me.amount*0.5,'water rations')}
 					else if (rations=='plentiful') {toConsume*=1.5;G.gain('happiness',me.amount*1,'water rations');}
-					//else if (rations=='generous') {toConsume*=2;G.gain('happiness',me.amount*2,'water rations');}
+					else if (rations=='generous') {toConsume*=2;G.gain('happiness',me.amount*2,'water rations');}
 					toConsume=randomFloor(toConsume);
 					var lacking=toConsume-G.lose('water',toConsume,'drinking');
 					if (rations=='none') lacking=me.amount*0.5;
@@ -321,8 +321,8 @@ func:function()
 					if (rations=='none') {toConsume=0;G.gain('happiness',-me.amount*3,'food rations');G.gain('health',-me.amount*2,'food rations');}
 					else if (rations=='meager') {toConsume*=0.5;G.gain('happiness',-me.amount*1,'food rations');G.gain('health',-me.amount*0.5,'food rations');}
 					else if (rations=='plentiful') {toConsume*=1.5;G.gain('happiness',me.amount*1,'food rations');}
-					//else if (rations=='generous') {toConsume*=2;G.gain('happiness',me.amount*2,'food rations');}
-					//else if (rations=='fattening') {toConsume*=3;G.gain('happiness',me.amount*3,'food rations');G.gain('health',-me.amount*0.25,'obesity');}
+					else if (rations=='generous') {toConsume*=2;G.gain('happiness',me.amount*2,'food rations');}
+					else if (rations=='fattening') {toConsume*=3;G.gain('happiness',me.amount*3,'food rations');G.gain('health',-me.amount*0.25,'obesity');}
 					toConsume=randomFloor(toConsume*consumeMult);
 					var consumed=G.lose('food',toConsume,'eating');
 					G.gain('happiness',G.lose('salt',randomFloor(consumed*0.1),'eating')*5,'salting food');//use salt
@@ -3242,8 +3242,8 @@ func:function()
 			'meager':{name:'Meager',desc:'Your people receive half a portion per day.'},
 			'sufficient':{name:'Sufficient',desc:'Your people receive a full portion per day.'},
 			'plentiful':{name:'Plentiful',desc:'Your people receive a portion and a half per day.'},
-			//'generous':{name:'Generous',desc:'Your people receive two portions per day.'},
-			//'fattening':{name:'Fattening',desc:'Your people receive three portions per day.<br>Lowers [health] due to obesity.'},
+			'generous':{name:'Generous',desc:'Your people receive two portions per day.'},
+			'fattening':{name:'Fattening',desc:'Your people receive three portions per day.<br>Lowers [health] due to obesity.'},
 		},
 		category:'food',
 	});
@@ -3259,7 +3259,7 @@ func:function()
 			'meager':{name:'Meager',desc:'Your people receive half a portion per day.'},
 			'sufficient':{name:'Sufficient',desc:'Your people receive a full portion per day.'},
 			'plentiful':{name:'Plentiful',desc:'Your people receive a portion and a half per day.'},
-			//'generous':{name:'Generous',desc:'Your people receive two portions per day.'},
+			'generous':{name:'Generous',desc:'Your people receive two portions per day.'},
 		},
 		category:'food',
 	});
