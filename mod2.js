@@ -3283,21 +3283,21 @@ func:function()
 		],
 		category:'food',
 	});
-	new G.Policy({
-		name:'eat herbs',
-		desc:'[herbs] are eaten, which lowers [happiness] and could have been used for other things.',
-		icon:[6,12,4,6],
-		cost:{'influence':1},
-		startMode:'on',
-		req:{'rules of food':true},
-		effects:[
-			{type:'make part of',what:['herbs'],parent:'food'},
-		],
-		effectsOff:[
-			{type:'make part of',what:['herbs'],parent:''},
-		],
-		category:'food',
-	});
+	//new G.Policy({
+		//name:'eat herbs',
+		//desc:'[herbs] are eaten, which lowers [happiness] and could have been used for other things.',
+		//icon:[6,12,4,6],
+		//cost:{'influence':1},
+		//startMode:'on',
+		//req:{'rules of food':true},
+		//effects:[
+		//	{type:'make part of',what:['herbs'],parent:'food'},
+		//],
+		//effectsOff:[
+		//	{type:'make part of',what:['herbs'],parent:''},
+		//],
+		//category:'food',
+	//});
 	new G.Policy({
 		name:'fertility rituals',
 		desc:'Improves birth rate by 20%. Consumes 1 [faith] every 20 days; will stop if you run out.',
