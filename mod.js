@@ -888,7 +888,7 @@ func:function()
 		desc:'[herb,Herbs] are various plants, roots and mushrooms that can be collected by simply foraging around. While relatively healthy to eat, they tend to taste fairly unpleasant.',
 		icon:[4,6],
 		startWith:250,
-		turnToByContext:{'eating':{'health':0.005,'happiness':-0.03},'decay':{'herb':0.2,'spoiled food':0.8}},
+		turnToByContext:{'eating':{'health':0.01,'happiness':-0.03},'decay':{'herb':0.2,'spoiled food':0.8}},
 		partOf:'food',
 		category:'food',
 	});
@@ -896,7 +896,7 @@ func:function()
 		name:'fruit',
 		desc:'[fruit,Fruits], whether gathered from berry bushes or fruit trees, are both sweet-tasting and good for you.',
 		icon:[4,7],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.01},'decay':{'spoiled food':1}},
+		turnToByContext:{'eating':{'health':0.02,'happiness':0.03},'decay':{'spoiled food':1}},
 		partOf:'food',
 		category:'food',
 	});
@@ -904,7 +904,7 @@ func:function()
 		name:'meat',
 		desc:'[meat,Raw meat] is gathered from dead animals and, while fairly tasty, can harbor a variety of diseases.',
 		icon:[5,7],
-		turnToByContext:{'eating':{'health':-0.03,'happiness':0.02,'bone':0.1},'decay':{'spoiled food':1}},
+		turnToByContext:{'eating':{'health':-0.02,'happiness':0.02,'bone':0.1},'decay':{'spoiled food':1}},
 		partOf:'food',
 		category:'food',
 	});
@@ -912,7 +912,7 @@ func:function()
 		name:'cooked meat',
 		desc:'Eating [cooked meat] is deeply satisfying and may even produce a [bone].',
 		icon:[6,7],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.04,'bone':0.1},'decay':{'cooked meat':0.2,'spoiled food':0.8}},
+		turnToByContext:{'eating':{'health':0.03,'happiness':0.05,'bone':0.1},'decay':{'cooked meat':0.5,'spoiled food':0.5}},
 		partOf:'food',
 		category:'food',
 	});
@@ -920,7 +920,7 @@ func:function()
 		name:'cured meat',
 		desc:'[cured meat] is interestingly tough and can keep for months without spoiling.',
 		icon:[11,6],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.05,'bone':0.1},'decay':{'cured meat':0.95,'spoiled food':0.05}},
+		turnToByContext:{'eating':{'health':0.03,'happiness':0.05,'bone':0.1},'decay':{'cured meat':0.95,'spoiled food':0.05}},
 		partOf:'food',
 		category:'food',
 	});
@@ -928,7 +928,7 @@ func:function()
 		name:'seafood',
 		desc:'[seafood,Raw seafood] such as fish, clams, or shrimps, is both bland-tasting and several kinds of nasty.',
 		icon:[5,6],
-		turnToByContext:{'eating':{'health':-0.02,'happiness':0.01,'bone':0.02},'decay':{'spoiled food':1}},
+		turnToByContext:{'eating':{'health':-0.02,'happiness':0.00,'bone':0.02},'decay':{'spoiled food':1}},
 		partOf:'food',
 		category:'food',
 	});
@@ -936,7 +936,7 @@ func:function()
 		name:'cooked seafood',
 		desc:'[cooked seafood] tastes pretty good and has various health benefits.',
 		icon:[6,6],
-		turnToByContext:{'eating':{'health':0.03,'happiness':0.03,'bone':0.02},'decay':{'cooked seafood':0.2,'spoiled food':0.8}},
+		turnToByContext:{'eating':{'health':0.04,'happiness':0.04,'bone':0.02},'decay':{'cooked seafood':0.5,'spoiled food':0.5}},
 		partOf:'food',
 		category:'food',
 	});
@@ -944,7 +944,7 @@ func:function()
 		name:'cured seafood',
 		desc:'[cured seafood] has a nice smoky flavor and lasts terribly long.',
 		icon:[12,6],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.04,'bone':0.02},'decay':{'cured seafood':0.95,'spoiled food':0.05}},
+		turnToByContext:{'eating':{'health':0.04,'happiness':0.04,'bone':0.02},'decay':{'cured seafood':0.95,'spoiled food':0.05}},
 		partOf:'food',
 		category:'food',
 	});
@@ -953,7 +953,7 @@ func:function()
 		name:'bread',
 		desc:'[bread] is filling, nutritious, and usually not unpleasant to eat; for these reasons, it is often adopted as staple food by those who can produce it.',
 		icon:[7,7],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.02},'decay':{'spoiled food':1}},
+		turnToByContext:{'eating':{'health':0.01,'happiness':0.01},'decay':{'spoiled food':1}},
 		partOf:'food',
 		category:'food',
 	});
@@ -1066,7 +1066,7 @@ func:function()
 		name:'brick',
 		desc:'Made from fired [clay]; can be used to construct solid walls efficiently.',
 		icon:[3,8],
-		partOf:'basic building materials',
+		partOf:'advanced building materials',
 		category:'build',
 	});
 	
@@ -1753,9 +1753,11 @@ func:function()
 		modes:{
 			'off':G.MODE_OFF,
 			'bricks':{name:'Fire bricks',icon:[3,8],desc:'Produce 10 [brick]s out of 1 [clay].',use:{'worker':1,'stone tools':1},req:{}},
+			'glass':{name:'Blow glass',icon:[4,8],desc:'Produce 5 [glass] out of 1 [sand].',use:{'worker':1,'metal tools':1},req:{}},
 		},
 		effects:[
 			{type:'convert',from:{'clay':1},into:{'brick':10},every:5,mode:'bricks'},
+			{type:'convert',from:{'sand':1},into:{'glass':5},every:5,mode:'glass'},
 		],
 		gizmos:true,
 		req:{'masonry':true},
@@ -2028,45 +2030,44 @@ func:function()
 		req:{'burial':true},
 		category:'civil',
 	});
-	
-	new G.Unit({
-		name:'mud shelter',
-		desc:'@provides 3 [housing]<>Basic, frail dwelling in which a small family can live.',
-		icon:[9,2],
-		cost:{'mud':50},
-		use:{'land':1},
-		//require:{'worker':1,'knapped tools':1},
-		effects:[
-			{type:'provide',what:{'housing':3}},
-			{type:'waste',chance:1/1000}
-		],
-		req:{'sedentism':true},
-		category:'housing',
-	});
 	new G.Unit({
 		name:'branch shelter',
-		desc:'@provides 3 [housing]<>Basic, very frail dwelling in which a small family can live.',
+		desc:'@provides 2 [housing]<>Basic, very frail dwelling in which a couple of people can live.',
 		icon:[10,2],
 		cost:{'stick':50},
 		use:{'land':1},
 		//require:{'worker':1,'knapped tools':1},
 		effects:[
-			{type:'provide',what:{'housing':3}},
+			{type:'provide',what:{'housing':2}},
 			{type:'waste',chance:3/1000}
 		],
 		req:{'sedentism':true},
 		category:'housing',
 	});
 	new G.Unit({
+		name:'mud shelter',
+		desc:'@provides 4 [housing]<>Basic, frail dwelling in which a small family can live.',
+		icon:[9,2],
+		cost:{'mud':50},
+		use:{'land':1},
+		//require:{'worker':1,'knapped tools':1},
+		effects:[
+			{type:'provide',what:{'housing':4}},
+			{type:'waste',chance:1/1000}
+		],
+		req:{'sedentism':true},
+		category:'housing',
+	});
+	new G.Unit({
 		name:'hut',
-		desc:'@provides 5 [housing]<>Small dwelling built out of hardened mud and branches.',
+		desc:'@provides 6 [housing]<>Small dwelling built out of hardened mud and branches.',
 		icon:[11,2],
 		cost:{'archaic building materials':100},
 		use:{'land':1},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
-			{type:'provide',what:{'housing':5}},
-			{type:'waste',chance:0.1/1000}
+			{type:'provide',what:{'housing':6}},
+			{type:'waste',chance:0.3/1000}
 		],
 		req:{'building':true},
 		category:'housing',
@@ -2080,7 +2081,7 @@ func:function()
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'housing':8}},
-			{type:'waste',chance:0.03/1000}
+			{type:'waste',chance:0.1/1000}
 		],
 		req:{'cities':true},
 		category:'housing',
@@ -2094,9 +2095,37 @@ func:function()
 		//require:{'worker':3,'metal tools':3},
 		effects:[
 			{type:'provide',what:{'housing':10}},
+			{type:'waste',chance:0.03/1000}
+		],
+		req:{'construction':true},
+		category:'housing',
+	});
+	new G.Unit({
+		name:'advanced house',
+		desc:'@provides 12 [housing]<>A more modern home that can hold a large family.',
+		icon:[21,3],
+		cost:{'advanced building materials':100},
+		use:{'land':1},
+		//require:{'worker':3,'metal tools':3},
+		effects:[
+			{type:'provide',what:{'housing':12}},
 			{type:'waste',chance:0.01/1000}
 		],
 		req:{'construction':true},
+		category:'housing',
+	});
+	new G.Unit({
+		name:'apartment building',
+		desc:'@provides 30 [housing]<>A large building that can hold several families.',
+		icon:[21,3],
+		cost:{'advanced building materials':250},
+		use:{'land':2},
+		//require:{'worker':3,'metal tools':3},
+		effects:[
+			{type:'provide',what:{'housing':30}},
+			{type:'waste',chance:0.001/1000}
+		],
+		req:{'city planning':true},
 		category:'housing',
 	});
 	
@@ -2593,7 +2622,7 @@ func:function()
 	});
 	new G.Tech({
 		name:'city planning',
-		desc:'@unlocks [architect]s<>',
+		desc:'@unlocks [architect]s@unlocks [apartment building]s<>',
 		icon:[22,8],
 		cost:{'insight':25},
 		req:{'construction':true,'cities':true},
@@ -2955,6 +2984,15 @@ func:function()
 		icon:[29,6],
 		cost:{'insight':35},
 		req:{'building':true,'pottery':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:glass blowing',
+		desc:'@unlocks [kiln]s can now produce [glass] out of [sand].<>',
+		icon:[27,6],
+		cost:{'insight':40},
+		req:{'masonry':true},
 		effects:[
 		],
 	});
