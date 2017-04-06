@@ -1066,7 +1066,7 @@ func:function()
 		name:'brick',
 		desc:'Made from fired [clay]; can be used to construct solid walls efficiently.',
 		icon:[3,8],
-		partOf:'basic building materials',
+		partOf:'advanced building materials',
 		category:'build',
 	});
 	
@@ -2099,7 +2099,7 @@ func:function()
 		category:'housing',
 	});
 	new G.Unit({
-		name:'modern house',
+		name:'advanced house',
 		desc:'@provides 12 [housing]<>A more modern home that can hold a large family.',
 		icon:[21,3],
 		cost:{'advanced building materials':100},
@@ -2110,6 +2110,20 @@ func:function()
 			{type:'waste',chance:0.01/1000}
 		],
 		req:{'construction':true},
+		category:'housing',
+	});
+	new G.Unit({
+		name:'apartment building',
+		desc:'@provides 30 [housing]<>A large building that can hold several families.',
+		icon:[21,3],
+		cost:{'advanced building materials':250},
+		use:{'land':2},
+		//require:{'worker':3,'metal tools':3},
+		effects:[
+			{type:'provide',what:{'housing':30}},
+			{type:'waste',chance:0.001/1000}
+		],
+		req:{'city planning':true},
 		category:'housing',
 	});
 	
@@ -2606,7 +2620,7 @@ func:function()
 	});
 	new G.Tech({
 		name:'city planning',
-		desc:'@unlocks [architect]s<>',
+		desc:'@unlocks [architect]s@unlocks [apartment building]s<>',
 		icon:[22,8],
 		cost:{'insight':25},
 		req:{'construction':true,'cities':true},
