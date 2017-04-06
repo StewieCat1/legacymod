@@ -4,6 +4,7 @@ author:'Orteil',
 desc:'The default dataset for Legacy.',
 engineVersion:1,
 manifest:0,
+requires:[],
 func:function()
 {
 	/*
