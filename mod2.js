@@ -842,10 +842,7 @@ func:function()
 		{
 			if (G.checkPolicy('disable spoiling')=='off')
 			{
-				var stored=Math.min(me.amount,G.getRes('water storage').amount)/me.amount;
-				var notStored=1-stored;
-				
-				var toSpoil=me.amount*0.02*notStored+me.amount*0.001*stored;
+				var toSpoil=me.amount*0.02;
 				var spent=G.lose('water',randomFloor(toSpoil),'decay');
 				G.gain('muddy water',randomFloor(spent),'decay');
 			}
