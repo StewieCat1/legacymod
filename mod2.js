@@ -274,7 +274,7 @@ func:function()
 				{
 					//drink water
 					var toConsume=0;
-					var weights={'baby':0.1,'child':0.3,'adult':0.5,'elder':0.5,'sick':0.4,'wounded':0.4};
+					var weights={'baby':0.125,'child':0.25,'adult':0.5,'elder':0.375,'sick':0.625,'wounded':0.625};
 					for (var i in weights)
 					{toConsume+=G.getRes(i).amount*weights[i];}
 					var rations=G.checkPolicy('water rations');
@@ -296,7 +296,7 @@ func:function()
 							var toDie=(lacking/5)*0.05;
 							if (G.year<1) toDie/=5;//less deaths in the first year
 							var died=0;
-							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3};//the elderly are the first to starve off
+							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':1.5,'wounded':1.5};//the elderly are the first to starve off
 							var sum=0;for (var i in weights){sum+=weights[i];}for (var i in weights){weights[i]/=sum;}//normalize
 							for (var i in weights){var ratio=(G.getRes(i).amount/me.amount);weights[i]=ratio+(1-ratio)*weights[i];}
 							for (var i in weights)
@@ -314,7 +314,7 @@ func:function()
 					var happinessAdd=0;
 					if (G.has('culture of moderation')) {consumeMult*=0.85;happinessAdd-=0.1;}
 					else if (G.has('joy of eating')) {consumeMult*=1.15;happinessAdd+=0.1;}
-					var weights={'baby':0.2,'child':0.5,'adult':1,'elder':1,'sick':0.75,'wounded':0.75};
+					var weights={'baby':0.25,'child':0.5,'adult':1,'elder':0.75,'sick':1.25,'wounded':1.25};
 					for (var i in weights)
 					{toConsume+=G.getRes(i).amount*weights[i];}
 					var rations=G.checkPolicy('food rations');
@@ -341,7 +341,7 @@ func:function()
 							var toDie=(lacking/5)*0.05;
 							if (G.year<1) toDie/=5;//less deaths in the first year
 							var died=0;
-							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3};//the elderly are the first to starve off
+							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':1.5,'wounded':1.5};//the elderly are the first to starve off
 							var sum=0;for (var i in weights){sum+=weights[i];}for (var i in weights){weights[i]/=sum;}//normalize
 							for (var i in weights){var ratio=(G.getRes(i).amount/me.amount);weights[i]=ratio+(1-ratio)*weights[i];}
 							for (var i in weights)
@@ -2055,7 +2055,7 @@ func:function()
 		name:'branch shelter',
 		desc:'@provides 2 [housing]<>Basic, very frail dwelling in which a couple of people can live.',
 		icon:[10,2],
-		cost:{'stick':50},
+		cost:{'stick':20},
 		use:{'land':1},
 		//require:{'worker':1,'knapped tools':1},
 		effects:[
@@ -3283,21 +3283,21 @@ func:function()
 		],
 		category:'food',
 	});
-	//new G.Policy({
-		//name:'eat herbs',
-		//desc:'[herbs] are eaten, which lowers [happiness] and could have been used for other things.',
-		//icon:[6,12,4,6],
-		//cost:{'influence':1},
-		//startMode:'on',
-		//req:{'rules of food':true},
-		//effects:[
-		//	{type:'make part of',what:['herbs'],parent:'food'},
-		//],
-		//effectsOff:[
-		//	{type:'make part of',what:['herbs'],parent:''},
-		//],
-		//category:'food',
-	//});
+	new G.Policy({
+		name:'eat herbs',
+		desc:'[herbs] are eaten, which lowers [happiness] and could have been used for other things.',
+		icon:[6,12,4,6],
+		cost:{'influence':1},
+		startMode:'on',
+		req:{'rules of food':true},
+		effects:[
+			{type:'make part of',what:['herbs'],parent:'food'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['herbs'],parent:''},
+		],
+		category:'food',
+	});
 	new G.Policy({
 		name:'fertility rituals',
 		desc:'Improves birth rate by 20%. Consumes 1 [faith] every 20 days; will stop if you run out.',
