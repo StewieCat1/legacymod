@@ -1852,7 +1852,7 @@ func:function()
 			'tin':{name:'Tin',icon:[13,8],desc:'Mine for [tin ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'iron':{name:'Iron',icon:[10,8],desc:'Mine for [iron ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'gold':{name:'Gold',icon:[11,8],desc:'Mine for [gold ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
-			'gold':{name:'Gems',icon:[7,9],desc:'Mine for [gems] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
+			'gems':{name:'Gems',icon:[7,9],desc:'Mine for [gems] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 		},
 		effects:[
 			{type:'gather',context:'mine',amount:10,max:30,mode:'any'},
