@@ -1799,7 +1799,7 @@ func:function()
 		desc:'@carves [cut stone] out of the ground@may find other minerals such as [limestone] and [marble]<>The [quarry] dismantles the ground we stand on so that our children may reach higher heights.',
 		icon:[22,3],
 		cost:{'archaic building materials':100},
-		use:{'land':4},
+		use:{'land':2},
 		//require:{'worker':3,'stone tools':3},
 		modes:{
 			'off':G.MODE_OFF,
@@ -1822,7 +1822,7 @@ func:function()
 		desc:'@extracts ores, [coal] and [stone] out of the ground@may occasionally collapse<>The workers in [mine]s burrow deep into the earth to provide all kinds of minerals.',
 		icon:[22,2],
 		cost:{'archaic building materials':100},
-		use:{'land':3},
+		use:{'land':2},
 		//require:{'worker':3,'stone tools':3},
 		modes:{
 			'off':G.MODE_OFF,
@@ -2010,7 +2010,7 @@ func:function()
 		desc:'@provides 1 [burial spot], in which the [corpse,dead] are automatically interred one by one@graves with buried corpses decay over time, freeing up land for more graves<>A simple grave dug into the earth, where the dead may find rest.//Burying your dead helps prevent [health,disease] and makes your people slightly [happiness,happier].',
 		icon:[13,2],
 		cost:{},
-		use:{'land':1},
+		use:{'land':0.25},
 		//require:{'worker':1,'knapped tools':1},
 		effects:[
 			{type:'provide',what:{'burial spot':1}},
@@ -2130,14 +2130,14 @@ func:function()
 	
 	new G.Unit({
 		name:'storage pit',
-		desc:'@provides 400 [food storage] and 400 [material storage]<>A simple hole in the ground, lined with stones.//Prevents some amount of food from perishing and some goods from being stolen, but may crumble away over time.',
+		desc:'@provides 500 [food storage] and 500 [material storage]<>A simple hole in the ground, lined with stones.//Prevents some amount of food from perishing and some goods from being stolen, but may crumble away over time.',
 		icon:[12,2],
 		cost:{'archaic building materials':50},
-		use:{'land':2},
+		use:{'land':1},
 		//require:{'worker':2,'knapped tools':2},
 		effects:[
-			{type:'provide',what:{'added food storage':400}},
-			{type:'provide',what:{'added material storage':400}},
+			{type:'provide',what:{'added food storage':500}},
+			{type:'provide',what:{'added material storage':500}},
 			{type:'waste',chance:0.8/1000}
 		],
 		req:{'stockpiling':true},
@@ -2145,13 +2145,13 @@ func:function()
 	});
 	new G.Unit({
 		name:'stockpile',
-		desc:'@provides 1000 [material storage]<>A simple building where resources are stored.//Slows material decay and deters theft somewhat, but may itself decay over time.',
+		desc:'@provides 2500 [material storage]<>A simple building where resources are stored.//Slows material decay and deters theft somewhat, but may itself decay over time.',
 		icon:[22,4],
 		cost:{'archaic building materials':100},
-		use:{'land':2},
+		use:{'land':1},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
-			{type:'provide',what:{'added material storage':1000}},
+			{type:'provide',what:{'added material storage':2500}},
 			{type:'waste',chance:0.1/1000}
 		],
 		req:{'stockpiling':true,'building':true},
@@ -2159,14 +2159,14 @@ func:function()
 	});
 	new G.Unit({
 		name:'warehouse',
-		desc:'@provides 4000 [material storage]<>A large building for storing materials. Staffed with two guards to prevent theft.',
+		desc:'@provides 10000 [material storage]<>A large building for storing materials. Staffed with two guards to prevent theft.',
 		icon:[25,4],
 		cost:{'basic building materials':500},
-		use:{'land':3},
+		use:{'land':2},
 		staff:{'worker':2},
 		//require:{'worker':3,'stone tools':3},
 		effects:[
-			{type:'provide',what:{'added material storage':4000}},
+			{type:'provide',what:{'added material storage':10000}},
 			{type:'waste',chance:0.001/1000}
 		],
 		req:{'stockpiling':true,'construction':true},
@@ -2174,13 +2174,13 @@ func:function()
 	});
 	new G.Unit({
 		name:'granary',
-		desc:'@provides 1000 [food storage]<>A grain storage building built on stilts to prevent pests from getting in.',
+		desc:'@provides 2500 [food storage]<>A grain storage building built on stilts to prevent pests from getting in.',
 		icon:[23,4],
 		cost:{'archaic building materials':50,'basic building materials':50,'pot':15},
-		use:{'land':2},
+		use:{'land':1},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
-			{type:'provide',what:{'added food storage':1000}},
+			{type:'provide',what:{'added food storage':2500}},
 			{type:'waste',chance:0.01/1000}
 		],
 		req:{'stockpiling':true,'pottery':true},
@@ -2188,14 +2188,14 @@ func:function()
 	});
 	new G.Unit({
 		name:'barn',
-		desc:'@provides 4000 [food storage]<>A large wooden building for storing food. A worker manages the grain to prevent rot.',
+		desc:'@provides 10000 [food storage]<>A large wooden building for storing food. A worker manages the grain to prevent rot.',
 		icon:[24,4],
 		cost:{'basic building materials':500},
 		use:{'land':2},
 		staff:{'worker':1},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
-			{type:'provide',what:{'added food storage':4000}},
+			{type:'provide',what:{'added food storage':10000}},
 			{type:'waste',chance:0.001/1000}
 		],
 		req:{'stockpiling':true,'carpentry':true},
