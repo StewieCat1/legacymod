@@ -234,7 +234,7 @@ func:function()
 		replacement:'food',
 		tick:function(me,tick)
 		{
-			if (me.replacement) me.hidden=true; else me.hidden=false;
+			if (G.has('currency') me.hidden=false; else me.hidden=true;
 		}
 	});
 	
@@ -792,7 +792,7 @@ func:function()
 		{
 			var amount=0;
 			amount+=G.getRes('added material storage').amount;
-			amount+=G.getRes('crate').amount*100;
+			amount+=G.getRes('crate').amount*25;
 			me.amount=amount;
 			
 			var materials=0;
@@ -1408,7 +1408,7 @@ func:function()
 	});
 	new G.Res({
 		name:'crate',
-		desc:'Each crate stores 100 materials.//Will decay slowly over time.',
+		desc:'Each crate stores 25 materials.//Will decay slowly over time.',
 		icon:[14,5],
 		category:'misc',
 		tick:function(me,tick)
@@ -1862,7 +1862,7 @@ func:function()
 		effects:[
 			{type:'convert',from:{'clay':4},into:{'brick':1},every:5,mode:'bricks'},
 			{type:'convert',from:{'sand':2},into:{'glass':1},every:5,mode:'glass'},
-			{type:'convert',from:{'corpse':1},into:{'corpse':0},every:1,mode:'cremate'},
+			{type:'convert',from:{'corpse':1},into:{'corpse':0},every:10,mode:'cremate'},
 		],
 		gizmos:true,
 		req:{'masonry':true},
