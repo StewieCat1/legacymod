@@ -1023,20 +1023,19 @@ func:function()
 		icon:[2,6],
 		partOf:'archaic building materials',
 		category:'build',
-		tick:function(me,tick)
-	});
+	});	
 	new G.Res({
 		name:'stick',
 		desc:'A short but sturdy branch. Obtained when foraging or when felling a tree.',
 		icon:[0,6],
 		partOf:'archaic building materials',
 		category:'build',
-		tick:function(me,tick)
 	});
 	new G.Res({
 		name:'limestone',
 		desc:'A fairly soft mineral. Can be foraged from some places, but is more commonly extracted while mining or quarrying.',
 		icon:[6,8],
+		turnToByContext:{'decay':{'sand':0.25}},
 		partOf:'archaic building materials',
 		category:'build',
 	});
@@ -1059,19 +1058,15 @@ func:function()
 		name:'cut stone',
 		desc:'[stone]s carved into blocks for easier hauling and building.',
 		icon:[0,8],
+		turnToByContext:{'decay':{'stone':1}},
 		partOf:'basic building materials',
 		category:'build',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.005;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-			G.gain('stone',randomFloor(spent),'crumbling');
-		},
 	});
 	new G.Res({
 		name:'log',
 		desc:'Chopped wood that can be directly used in construction, but can also be processed into [lumber].',
 		icon:[1,6],
+		turnToByContext:{'decay':{'stick':2}},
 		partOf:'basic building materials',
 		category:'build',
 	});
@@ -1079,6 +1074,7 @@ func:function()
 		name:'lumber',
 		desc:'[log]s that have been processed into planks, making them an adaptable and resilient building material.',
 		icon:[1,8],
+		turnToByContext:{'decay':{'stick':1}},
 		partOf:'basic building materials',
 		category:'build',
 	});
@@ -1093,6 +1089,7 @@ func:function()
 		name:'brick',
 		desc:'Made from fired [clay]; can be used to construct solid walls efficiently.',
 		icon:[3,8],
+		turnToByContext:{'decay':{'stone':1}},
 		partOf:'advanced building materials',
 		category:'build',
 	});
@@ -1122,6 +1119,7 @@ func:function()
 		name:'concrete',
 		desc:'An exceptionally sturdy construction material, made by mixing [limestone] with [water] and letting it set.',
 		icon:[5,8],
+		turnToByContext:{'decay':{'stone':2}},
 		partOf:'advanced building materials',
 		category:'build',
 	});
@@ -1137,6 +1135,7 @@ func:function()
 		name:'marble',
 		desc:'A construction material prized for its decorative properties, that can also be employed in sculptures.',
 		icon:[7,8],
+		turnToByContext:{'decay':{'stone':0.5, 'marble':0.75}},
 		partOf:'precious building materials',
 		category:'build',
 	});
@@ -1144,6 +1143,7 @@ func:function()
 		name:'gold block',
 		desc:'A valuable, if unreliable construction material.',
 		icon:[14,8],
+		turnToByContext:{'decay':{'gold ore':1, 'gold block':0.9}},
 		partOf:'precious building materials',
 		category:'build',
 	});
@@ -1151,6 +1151,7 @@ func:function()
 		name:'gem block',
 		desc:'A precious building material used only for the finest monuments.',
 		icon:[choose([17,18]),8],//i can't pick
+		turnToByContext:{'decay':{'gems':0.4, 'gem block':0.8}},
 		partOf:'precious building materials',
 		category:'build',
 	});
@@ -1159,6 +1160,7 @@ func:function()
 		name:'copper ore',
 		desc:'Ore that can be processed into [soft metal ingot]s.',
 		icon:[9,8],
+		turnToByContext:{'decay':{'copper ore':0.25}},
 		partOf:'misc materials',
 		category:'build',
 	});
@@ -1166,6 +1168,7 @@ func:function()
 		name:'iron ore',
 		desc:'Ore that can be processed into [hard metal ingot]s.',
 		icon:[10,8],
+		turnToByContext:{'decay':{'iron ore':0.5}},
 		partOf:'misc materials',
 		category:'build',
 	});
@@ -1173,6 +1176,7 @@ func:function()
 		name:'gold ore',
 		desc:'Ore that can be processed into [precious metal ingot]s.',
 		icon:[11,8],
+		turnToByContext:{'decay':{'gold ore':0.75}},
 		partOf:'misc materials',
 		category:'build',
 	});
@@ -1180,6 +1184,7 @@ func:function()
 		name:'tin ore',
 		desc:'Ore that can be processed into [soft metal ingot]s.',
 		icon:[13,8],
+		turnToByContext:{'decay':{'tin ore':0.5}},
 		partOf:'misc materials',
 		category:'build',
 	});
@@ -1188,6 +1193,7 @@ func:function()
 		name:'gems',
 		desc:'Shiny, valuable minerals from deep under the earth.',
 		icon:[7,9],
+		turnToByContext:{'decay':{'gems':0.75}},
 		partOf:'misc materials',
 		category:'build',
 	});
@@ -1204,6 +1210,7 @@ func:function()
 		name:'soft metal ingot',
 		desc:'Soft, malleable metal that can be used to make basic [metal tools].//Includes tin and copper.',
 		icon:[9,9],
+		turnToByContext:{'decay':{'copper ore':1, 'soft metal ingot':0.25}},
 		partOf:'misc materials',
 		category:'build',
 	});
@@ -1211,6 +1218,7 @@ func:function()
 		name:'hard metal ingot',
 		desc:'Tough, durable metal that can be used to craft [metal tools] and weapons.//Includes iron and bronze.',
 		icon:[10,9],
+		turnToByContext:{'decay':{'iron ore':1, 'hard metal ingot':0.5}},
 		partOf:'misc materials',
 		category:'build',
 	});
@@ -1218,6 +1226,7 @@ func:function()
 		name:'strong metal ingot',
 		desc:'Solid metal possessing high tensile strength.//Includes steel.',
 		icon:[12,9],
+		turnToByContext:{'decay':{'iron ore':2, 'strong metal ingot':0.75}},
 		partOf:'misc materials',
 		category:'build',
 	});
@@ -1225,6 +1234,7 @@ func:function()
 		name:'precious metal ingot',
 		desc:'Metal with little industrial usefulness but imbued with valuable aesthetics.//Includes gold and silver.',
 		icon:[11,9],
+		turnToByContext:{'decay':{'gold ore':0.25, 'precious metal ingot':0.75}},
 		partOf:'misc materials',
 		category:'build',
 	});
@@ -1235,6 +1245,11 @@ func:function()
 		icon:[0,9],
 		displayUsed:true,
 		category:'gear',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.01;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
 	new G.Res({
 		name:'stone tools',
@@ -1242,6 +1257,11 @@ func:function()
 		icon:[1,9],
 		displayUsed:true,
 		category:'gear',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.005;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
 	new G.Res({
 		name:'metal tools',
@@ -1249,6 +1269,11 @@ func:function()
 		icon:[2,9],
 		displayUsed:true,
 		category:'gear',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.001;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
 	
 	new G.Res({
@@ -1257,6 +1282,11 @@ func:function()
 		icon:[5,9],
 		displayUsed:true,
 		category:'gear',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.005;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
 	new G.Res({
 		name:'bow',
@@ -1264,6 +1294,11 @@ func:function()
 		icon:[6,9],
 		displayUsed:true,
 		category:'gear',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.001;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
 	
 	var clothesInfo='//Your people automatically wear the highest-quality clothing available, moving on to the next type if there isn\'t enough.';
@@ -1309,6 +1344,7 @@ func:function()
 		name:'leather',
 		desc:'[hide] that has been cured and worked to make it strong and durable for a variety of uses.',
 		icon:[10,7],
+		turnToByContext:{'decay':{'hide':1, 'leather':0.5}},
 		partOf:'misc materials',
 		category:'build',
 	});
