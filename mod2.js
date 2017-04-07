@@ -2039,7 +2039,7 @@ func:function()
 		modes:{
 			'off':G.MODE_OFF,
 			'lumber':{name:'Cut logs into lumber',icon:[1,8],desc:'Cut [log]s into 3 [lumber] each.',use:{'worker':1,'stone tools':1},req:{}},
-			'crate':{name:'Make crates',icon:[1,8],desc:'Builds [crate]s out of 5 [lumber] each.',use:{'worker':1,'stone tools':1},req:{'crate builing':true}},
+			'crate':{name:'Make crates',icon:[14,5],desc:'Builds [crate]s out of 5 [lumber] each.',use:{'worker':1,'stone tools':1},req:{'crate building':true}},
 			//'bucket':{name:'Make buckets',icon:[14,7],desc:'Makes [bucket]s out of 2 [lumber] each.',use:{'worker':1,'stone tools':1},req:{}},
 		},
 		effects:[
