@@ -792,6 +792,7 @@ func:function()
 		{
 			var amount=0;
 			amount+=G.getRes('added material storage').amount;
+			amount+=G.getRes('crate').amount*100;
 			me.amount=amount;
 			
 			var materials=0;
@@ -1049,7 +1050,7 @@ func:function()
 	
 	new G.Res({
 		name:'basic building materials',
-		desc:'Processed materials such as [cut stone,Stone blocks], [brick]s and [lumber], used to build basic structures.',
+		desc:'Processed materials such as [cut stone,Stone blocks] and [lumber], used to build basic structures.',
 		icon:[2,8],
 		meta:true,
 		tick:loseMaterialsTick,
@@ -1089,7 +1090,7 @@ func:function()
 		name:'brick',
 		desc:'Made from fired [clay]; can be used to construct solid walls efficiently.',
 		icon:[3,8],
-		turnToByContext:{'decay':{'stone':1}},
+		turnToByContext:{'decay':{'stone':1, 'brick':0.5}},
 		partOf:'advanced building materials',
 		category:'build',
 	});
@@ -1112,6 +1113,7 @@ func:function()
 		name:'glass',
 		desc:'Obtained by melting [sand]; can be used to construct windows, which are part of most advanced buildings.',
 		icon:[4,8],
+		turnToByContext:{'decay':{'glass':0.75}},
 		partOf:'advanced building materials',
 		category:'build',
 	});
@@ -1119,7 +1121,7 @@ func:function()
 		name:'concrete',
 		desc:'An exceptionally sturdy construction material, made by mixing [limestone] with [water] and letting it set.',
 		icon:[5,8],
-		turnToByContext:{'decay':{'stone':2}},
+		turnToByContext:{'decay':{'stone':1, 'concrete':0.5}},
 		partOf:'advanced building materials',
 		category:'build',
 	});
@@ -1397,6 +1399,17 @@ func:function()
 		name:'pot',
 		desc:'Each pot stores 25 [food].//Will decay slowly over time.',
 		icon:[13,5],
+		category:'misc',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.0005;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
+	new G.Res({
+		name:'crate',
+		desc:'Each crate stores 100 materials.//Will decay slowly over time.',
+		icon:[14,5],
 		category:'misc',
 		tick:function(me,tick)
 		{
@@ -2026,10 +2039,12 @@ func:function()
 		modes:{
 			'off':G.MODE_OFF,
 			'lumber':{name:'Cut logs into lumber',icon:[1,8],desc:'Cut [log]s into 3 [lumber] each.',use:{'worker':1,'stone tools':1},req:{}},
+			'crate':{name:'Make crates',icon:[1,8],desc:'Builds [crate]s out of 5 [lumber] each.',use:{'worker':1,'stone tools':1},req:{'crate builing':true}},
 			//'bucket':{name:'Make buckets',icon:[14,7],desc:'Makes [bucket]s out of 2 [lumber] each.',use:{'worker':1,'stone tools':1},req:{}},
 		},
 		effects:[
 			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
+			{type:'convert',from:{'lumber':5},into:{'crate':1},repeat:2,mode:'lumber'},
 			//{type:'convert',from:{'lumber':2},into:{'bucket':1},repeat:2,mode:'bucket'},
 			{type:'waste',chance:0.001/1000},
 		],
@@ -3125,6 +3140,15 @@ func:function()
 		icon:[30,6],
 		cost:{'insight':35},
 		req:{'building':true,'woodcutting':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'crate building',
+		desc:'@[carpenter workshop]s can now produce [crate]s out of [lumber].<>',
+		icon:[30,6],
+		cost:{'insight':30},
+		req:{'carpentry':true},
 		effects:[
 		],
 	});
