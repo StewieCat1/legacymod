@@ -620,7 +620,7 @@ func:function()
 		displayUsed:true,
 		tick:function(me)
 		{
-			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100);
+			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*1000);
 			//me.amount=G.tiles;
 			//TODO : this stuff
 			/*
@@ -2430,7 +2430,7 @@ func:function()
 		cost:{'food':20},
 		use:{'worker':1},
 		effects:[
-			{type:'explore',explored:0.1,unexplored:0},
+			{type:'explore',explored:0.01,unexplored:0},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','wanderer got lost','wanderers got lost'),chance:1/100}
 		],
 		req:{'speech':true},
@@ -2444,7 +2444,7 @@ func:function()
 		use:{'worker':1},
 		staff:{'stone tools':1},
 		effects:[
-			{type:'explore',explored:0,unexplored:0.01},
+			{type:'explore',explored:0,unexplored:0.001},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','scout got lost','scouts got lost'),chance:1/300}
 		],
 		req:{'scouting':true},
