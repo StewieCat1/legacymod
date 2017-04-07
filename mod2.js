@@ -234,7 +234,7 @@ func:function()
 		replacement:'food',
 		tick:function(me,tick)
 		{
-			if (G.has('currency')) me.hidden=false; else me.hidden=true;
+			if (me.replacement) me.hidden=true; else me.hidden=false;
 		}
 	});
 	
