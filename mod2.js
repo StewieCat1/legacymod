@@ -2044,7 +2044,7 @@ func:function()
 		},
 		effects:[
 			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
-			{type:'convert',from:{'lumber':5},into:{'crate':1},repeat:2,mode:'lumber'},
+			{type:'convert',from:{'lumber':5},into:{'crate':1},repeat:2,mode:'crate'},
 			//{type:'convert',from:{'lumber':2},into:{'bucket':1},repeat:2,mode:'bucket'},
 			{type:'waste',chance:0.001/1000},
 		],
