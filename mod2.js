@@ -2339,6 +2339,8 @@ func:function()
 		modes:{
 			'off':G.MODE_OFF,
 			'house building':{name:'House building',icon:[21,3],desc:'Build [house]s as long as there is homelessness and the right materials are available.'},
+			'advanced house building':{name:'Advanced house building',icon:[21,3],desc:'Build [advanced house]s as long as there is homelessness and the right materials are available.'},
+			'apartment building':{name:'Apartment building',icon:[21,3],desc:'Build [apartment building]s as long as there is homelessness and the right materials are available.'},
 			'undertaker':{name:'Undertaker',icon:[13,2],desc:'Dig [grave]s as long as there are unburied corpses.'},
 		},
 		effects:[
@@ -2351,6 +2353,24 @@ func:function()
 					G.buyUnitByName('house',toMake,true);
 				}
 			},mode:'house building'},
+			{type:'function',func:function(me){
+				var wiggleRoom=10;
+				var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
+				var toMake=me.amount-me.idle;
+				if (homeless>0 && toMake>0 && G.canBuyUnitByName('advanced house',toMake))
+				{
+					G.buyUnitByName('advanced house',toMake,true);
+				}
+			},mode:'advanced house building'},
+			{type:'function',func:function(me){
+				var wiggleRoom=10;
+				var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
+				var toMake=me.amount-me.idle;
+				if (homeless>0 && toMake>0 && G.canBuyUnitByName('apartment building',toMake))
+				{
+					G.buyUnitByName('apartment building',toMake,true);
+				}
+			},mode:'apartment building'},
 			{type:'function',func:function(me){
 				var wiggleRoom=5;
 				var toMake=Math.min(me.amount-me.idle,Math.max(0,(G.getRes('corpse').amount+wiggleRoom)-(G.getRes('burial spot').amount-G.getRes('burial spot').used)));
@@ -2739,7 +2759,7 @@ func:function()
 		name:'construction',
 		desc:'@unlocks [house]s and [advanced house]s@unlocks [warehouse]s (with [stockpiling])<>',
 		icon:[30,7],
-		cost:{'insight':30, 'science':5},
+		cost:{'insight':30, 'science':10},
 		req:{'cities':true,'masonry':true,'carpentry':true,'quarrying':true},
 		effects:[
 		],
@@ -2978,7 +2998,7 @@ func:function()
 		name:'bronze-working',
 		desc:'@[furnace]s can now make [hard metal ingot]s from [copper ore] and [tin ore]<>',//TODO : desc
 		icon:[28,5],
-		cost:{'insight':30},
+		cost:{'insight':30, 'science':5},
 		req:{'smelting':true},
 		effects:[
 		],
@@ -2997,7 +3017,7 @@ func:function()
 		desc:'@[furnace]s can now make [precious metal ingot]s from [gold ore]@[blacksmith workshop]s can now forge [gold block]s out of [precious metal ingot]s<>',//TODO : desc
 		icon:[29,5],
 		cost:{'insight':40},
-		req:{'smelting':true, 'science':5},
+		req:{'smelting':true, 'science':10},
 		effects:[
 		],
 	});
@@ -3035,7 +3055,7 @@ func:function()
 		name:'clans',
 		desc:'@unlocks [clan leader]s, which generate [influence]@provides 5 [authority]<>',//TODO : desc
 		icon:[23,6],
-		cost:{'insight':25},
+		cost:{'insight':25, 'science':5},
 		req:{'chieftains':true,'code of law':true},
 		effects:[
 			{type:'provide res',what:{'authority':5}},
@@ -3099,7 +3119,7 @@ func:function()
 		desc:'@[carver]s can now make [gem block]s out of [gems]<>',//TODO : desc
 		icon:[27,6],
 		cost:{'insight':20, 'science':5},
-		req:{'carving':true,'tool-making':true},
+		req:{'carving':true,'tool-making':true, 'mining':true},
 		effects:[
 		],
 	});
@@ -3183,7 +3203,7 @@ func:function()
 		name:'monument-building',
 		desc:'@unlocks the [mausoleum], an early wonder<>',
 		icon:[24,8],
-		cost:{'insight':90,'culture':40},
+		cost:{'insight':90,'culture':40, 'science':15},
 		req:{'construction':true,'burial':true,'belief in the afterlife':true},
 		effects:[
 		],
