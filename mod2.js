@@ -1641,8 +1641,7 @@ func:function()
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
 		effects:[
-			{type:'convert',from:{'insight':0.1},into:{'insight':0}},
-			{type:'gather',what:{'science':0.05}}
+			{type:'convert',from:{'insight':0.1},into:{'science':0.05}},
 		],
 		req:{'experimentation':true},
 		category:'discovery',
