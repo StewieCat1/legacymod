@@ -1643,7 +1643,7 @@ func:function()
 		effects:[
 			{type:'gather',what:{'science':0.05}},
 		],
-		req:{'science':true},
+		req:{'experimentation':true},
 		category:'discovery',
 		priority:4,
 	});
@@ -3168,8 +3168,8 @@ func:function()
 		],
 	});
 	new G.Tech({
-		name:'science',
-		desc:'@unlocks [scientists]@provides 20 [education].<>',
+		name:'experimentation',
+		desc:'@unlocks [scientist]s@provides 20 [education].<>',
 		icon:[0,0],
 		cost:{'insight':25},
 		req:{'symbolism':true},
