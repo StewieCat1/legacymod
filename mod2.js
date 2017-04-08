@@ -3001,16 +3001,16 @@ func:function()
 		effects:[
 		],
 	});
-	//new G.Tech({
-	//	name:'currency',
-	//	desc:'@[blacksmith]s can now produce [gold ore, coin]s',
-	//	icon:[23,8],
-	//	cost:{'insight':40},
-	//	req:{'gold-working':true},
-	//	effects:[
-	//		{type:'show res',what:['coin']},
-	//	],
-	//});
+	new G.Tech({
+		name:'currency',
+		desc:'@[blacksmith]s can now produce [gold ore, coin]s',
+		icon:[23,8],
+		cost:{'insight':40},
+		req:{'gold-working':true},
+		effects:[
+			{type:'show res',what:['coin']},
+		],
+	});
 	new G.Tech({
 		name:'steel-making',
 		desc:'@[furnace]s can now make [strong metal ingot]s from [iron ore] and [coal]<>',//TODO : desc
