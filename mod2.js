@@ -2719,7 +2719,7 @@ func:function()
 		//TODO : in the future, boats will be units or resources
 		desc:'@allows full ocean exploring<>',
 		icon:[28,7],
-		cost:{'insight':40, 'science':10},
+		cost:{'insight':40,'science':10},
 		req:{'canoes':true,'carpentry':true},
 		effects:[
 			{type:'allow',what:['ocean exploring']},
