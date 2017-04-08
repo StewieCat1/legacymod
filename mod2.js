@@ -2737,9 +2737,9 @@ func:function()
 	});
 	new G.Tech({
 		name:'construction',
-		desc:'@unlocks [house]s@unlocks [warehouse]s (with [stockpiling])<>',
+		desc:'@unlocks [house]s and [advanced house]s@unlocks [warehouse]s (with [stockpiling])<>',
 		icon:[30,7],
-		cost:{'insight':30},
+		cost:{'insight':30, 'science':5},
 		req:{'cities':true,'masonry':true,'carpentry':true,'quarrying':true},
 		effects:[
 		],
@@ -2749,7 +2749,7 @@ func:function()
 		name:'city planning',
 		desc:'@unlocks [architect]s@unlocks [apartment building]s<>',
 		icon:[22,8],
-		cost:{'insight':25},
+		cost:{'insight':25, 'science':10},
 		req:{'construction':true,'cities':true},
 		effects:[
 		],
@@ -2936,7 +2936,7 @@ func:function()
 		name:'curing',
 		desc:'@[firekeeper]s can now prepare [cured meat] and [cured seafood] with [salt], which last much longer<>Storing food with special preparations seems to ward off rot, and comes along with the advent of delicious jerky.',
 		icon:[27,7],
-		cost:{'insight':15},
+		cost:{'insight':15, 'science':5},
 		req:{'cooking':true,'stockpiling':true},
 	});
 	
@@ -2960,7 +2960,7 @@ func:function()
 		name:'leather-working',
 		desc:'@[clothier]s can now cure [hide]s into [leather] and use leather in cloth-making (with [weaving])<>',
 		icon:[31,1],
-		cost:{'insight':20},
+		cost:{'insight':20, 'science':5},
 		req:{'sewing':true},
 	});
 	
@@ -2987,7 +2987,7 @@ func:function()
 		name:'iron-working',
 		desc:'@[furnace]s can now make [hard metal ingot]s from [iron ore]<>',//TODO : desc
 		icon:[27,5],
-		cost:{'insight':30},
+		cost:{'insight':30, 'science':5},
 		req:{'smelting':true},
 		effects:[
 		],
@@ -2997,25 +2997,25 @@ func:function()
 		desc:'@[furnace]s can now make [precious metal ingot]s from [gold ore]@[blacksmith workshop]s can now forge [gold block]s out of [precious metal ingot]s<>',//TODO : desc
 		icon:[29,5],
 		cost:{'insight':40},
-		req:{'smelting':true},
+		req:{'smelting':true, 'science':5},
 		effects:[
 		],
 	});
-	new G.Tech({
-		name:'currency',
-		desc:'@[blacksmith]s can now produce [gold ore, coin]s',
-		icon:[23,8],
-		cost:{'insight':40},
-		req:{'gold-working':true},
-		effects:[
-			{type:'show res',what:['coin']},
-		],
-	});
+	//new G.Tech({
+	//	name:'currency',
+	//	desc:'@[blacksmith]s can now produce [gold ore, coin]s',
+	//	icon:[23,8],
+	//	cost:{'insight':40},
+	//	req:{'gold-working':true},
+	//	effects:[
+	//		{type:'show res',what:['coin']},
+	//	],
+	//});
 	new G.Tech({
 		name:'steel-making',
 		desc:'@[furnace]s can now make [strong metal ingot]s from [iron ore] and [coal]<>',//TODO : desc
 		icon:[30,5],
-		cost:{'insight':40},
+		cost:{'insight':40, 'science':10},
 		req:{'iron-working':true},
 		effects:[
 		],
@@ -3045,7 +3045,7 @@ func:function()
 		name:'code of law',
 		desc:'@provides 15 [authority]@political units generate more [influence]<>',//TODO : desc
 		icon:[24,6],
-		cost:{'insight':20},
+		cost:{'insight':20, 'science':5},
 		req:{'symbolism':true,'sedentism':true},
 		effects:[
 			{type:'provide res',what:{'authority':15}},
@@ -3066,7 +3066,7 @@ func:function()
 		name:'prospecting',
 		desc:'@[mine]s can now be set to mine for specific ores',
 		icon:[25,5],
-		cost:{'insight':35},
+		cost:{'insight':35, 'science':5},
 		req:{'mining':true},
 		effects:[
 		],
@@ -3098,7 +3098,7 @@ func:function()
 		name:'gem-cutting',
 		desc:'@[carver]s can now make [gem block]s out of [gems]<>',//TODO : desc
 		icon:[27,6],
-		cost:{'insight':20},
+		cost:{'insight':20, 'science':5},
 		req:{'carving':true,'tool-making':true},
 		effects:[
 		],
@@ -3117,7 +3117,7 @@ func:function()
 		name:'masonry',
 		desc:'@unlocks [kiln]s, which produce a variety of goods such as [brick]s@[carver]s can now turn [stone]s into [cut stone] slowly<>',
 		icon:[29,6],
-		cost:{'insight':35},
+		cost:{'insight':35, 'science':10},
 		req:{'building':true,'pottery':true},
 		effects:[
 		],
@@ -3126,7 +3126,7 @@ func:function()
 		name:'sand melting',
 		desc:'@[kiln]s can now produce [glass] out of [sand].<>',
 		icon:[27,6],
-		cost:{'insight':40},
+		cost:{'insight':40, 'science':10},
 		req:{'masonry':true},
 		effects:[
 		],
@@ -3135,7 +3135,7 @@ func:function()
 		name:'cremation',
 		desc:'@[kiln]s can now cremate [corpse]s.<>',
 		icon:[18,1],
-		cost:{'insight':40},
+		cost:{'insight':40, 'science':10},
 		req:{'masonry':true},
 		effects:[
 		],
@@ -3144,7 +3144,7 @@ func:function()
 		name:'concrete pouring',
 		desc:'@unlocks [concrete mixer]s, who produce [concrete] out of [limestone] and [water].<>',
 		icon:[25,6],
-		cost:{'insight':40},
+		cost:{'insight':40, 'science':10},
 		req:{'quarrying':true},
 		effects:[
 		],
@@ -3153,7 +3153,7 @@ func:function()
 		name:'carpentry',
 		desc:'@unlocks [carpenter workshop]s, which can process [log]s into [lumber] and produce wooden goods@unlocks [barn]s (with [stockpiling])<>',
 		icon:[30,6],
-		cost:{'insight':35},
+		cost:{'insight':35, 'science':5},
 		req:{'building':true,'woodcutting':true},
 		effects:[
 		],
@@ -3162,13 +3162,13 @@ func:function()
 		name:'crate building',
 		desc:'@[carpenter workshop]s can now produce [crate]s out of [lumber].<>',
 		icon:[30,6],
-		cost:{'insight':30},
+		cost:{'insight':30, 'science':10},
 		req:{'carpentry':true},
 		effects:[
 		],
 	});
 	new G.Tech({
-		name:'experimentation',
+		name:'science',
 		desc:'@unlocks [scientists]@provides 20 [education].<>',
 		icon:[0,0],
 		cost:{'insight':25},
