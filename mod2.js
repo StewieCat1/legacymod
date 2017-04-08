@@ -2989,11 +2989,12 @@ func:function()
 	});
 	new G.Tech({
 		name:'currency',
-		desc:'@[blacksmith]s can now produce [coin]s',
+		desc:'@[blacksmith]s can now produce [gold ore, coin]s',
 		icon:[23,8],
 		cost:{'insight':40},
 		req:{'gold-working':true},
 		effects:[
+			{type:'show res',what:['coin']},
 		],
 	});
 	new G.Tech({
@@ -3150,6 +3151,17 @@ func:function()
 		cost:{'insight':30},
 		req:{'carpentry':true},
 		effects:[
+		],
+	});
+	new G.Tech({
+		name:'experimentation',
+		desc:'@unlocks [scientists]@provides 20 [education].<>',
+		icon:[0,0],
+		cost:{'insight':25},
+		req:{'symbolism':true},
+		effects:[
+			{type:'provide res',what:{'education':20}},
+			{type:'show res',what:['science']},
 		],
 	});
 	
