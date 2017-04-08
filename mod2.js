@@ -1633,6 +1633,20 @@ func:function()
 		category:'discovery',
 		priority:5,
 	});
+	new G.Unit({
+		name:'scientist',
+		desc:'@generates [science] every now and then, which you can use to research advanced technologies.'
+		icon:[1,2],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.2},
+		effects:[
+			{type:'gather',what:{'science':0.05}},
+		],
+		req:{'science':true},
+		category:'discovery',
+		priority:4,
+	});
 	
 	new G.Unit({
 		name:'storyteller',
