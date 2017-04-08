@@ -1635,13 +1635,13 @@ func:function()
 	});
 	new G.Unit({
 		name:'scientist',
-		desc:'@generates [science] every now and then, which you can use to research advanced technologies.',
+		desc:'@generates [science] from [insight] every now and then, which you can use to research advanced technologies.',
 		icon:[1,2],
 		cost:{},
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
 		effects:[
-			{type:'gather',what:{'science':0.05}},
+			{type:'convert',from:{'insight':0.1},into:{'science':0.05}},
 		],
 		req:{'experimentation':true},
 		category:'discovery',
