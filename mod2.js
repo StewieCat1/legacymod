@@ -182,6 +182,8 @@ func:function()
 			happiness=Math.max(-2,Math.min(2,happiness));
 			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
 			else mult=1/(Math.pow(2,-happiness+1)/2);
+			if (G.has('laziness')) {mult*=0.85;G.gain('happiness',G.getRes('population').amount*0.1,'free time');};
+			else if (G.has('work ethic')) {mult*=1.15;G.gain('happiness',-G.getRes('population').amount*0.1,'boredom');};
 		}
 		return mult;
 	}
@@ -615,7 +617,7 @@ func:function()
 	});
 	new G.Res({
 		name:'land',
-		desc:'Each tile of territory you own grants you some [land] (100 per fully-explored non-ocean tile, by default) upon which you can construct buildings. If for some reason you find yourself with less land than your buildings are using, some of them will start to slowly crumble away.//The number on the left is how much land is occupied, while the number on the right is how much land you have in total.',
+		desc:'Each tile of territory you own grants you some [land] (1,000 per fully-explored non-ocean tile, by default) upon which you can construct buildings. If for some reason you find yourself with less land than your buildings are using, some of them will start to slowly crumble away.//The number on the left is how much land is occupied, while the number on the right is how much land you have in total.',
 		icon:[14,4],
 		displayUsed:true,
 		tick:function(me)
@@ -626,8 +628,8 @@ func:function()
 			/*
 				concept :
 					-each tile owned can be explored to 100%
-					-you get one land per explored percent per tile
-					-some techs also add a +10 etc bonus to the max of 100 land per full tile
+					-you get 10 land per explored percent per tile
+					-some techs also add a +10 etc bonus to the max of 1000 land per full tile
 					-we need to setup a system to recalculate this when appropriate
 			*/
 		},
@@ -691,10 +693,10 @@ func:function()
 			else
 			{
 				var amount=me.amount/G.getRes('population').amount;
-				if (amount>=100) return [4,4];
-				else if (amount>=50) return [3,4];
-				else if (amount>=-50) return [2,4];
-				else if (amount>=-100) return [1,4];
+				if (amount>=120) return [4,4];
+				else if (amount>=40) return [3,4];
+				else if (amount>=-40) return [2,4];
+				else if (amount>=-120) return [1,4];
 				else return [0,4];
 			}
 		},
@@ -734,10 +736,10 @@ func:function()
 			else
 			{
 				var amount=me.amount/G.getRes('population').amount;
-				if (amount>=100) return [4,5];
-				else if (amount>=50) return [3,5];
-				else if (amount>=-50) return [2,5];
-				else if (amount>=-100) return [1,5];
+				if (amount>=120) return [4,5];
+				else if (amount>=40) return [3,5];
+				else if (amount>=-40) return [2,5];
+				else if (amount>=-120) return [1,5];
 				else return [0,5];
 			}
 		},
@@ -3293,6 +3295,22 @@ func:function()
 		cost:{'culture':5},
 		chance:50,
 		req:{'tribalism':true,'culture of moderation':false},
+	});
+	new G.Trait({
+		name:'laziness',
+		desc:'@people work 15% slower, but are happier.',
+		icon:[3,12,4,1],
+		cost:{'culture':10},
+		chance:10,
+		req:{'work ethic':false},
+	});
+	new G.Trait({
+		name:'work ethic',
+		desc:'@people work 15% faster, but are less happy.',
+		icon:[4,12,4,1],
+		cost:{'culture':10},
+		chance:10,
+		req:{'laziness':false},
 	});
 	new G.Trait({
 		name:'insect-eating',
