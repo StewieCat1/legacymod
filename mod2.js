@@ -3017,8 +3017,8 @@ func:function()
 		name:'gold-working',
 		desc:'@[furnace]s can now make [precious metal ingot]s from [gold ore]@[blacksmith workshop]s can now forge [gold block]s out of [precious metal ingot]s<>',//TODO : desc
 		icon:[29,5],
-		cost:{'insight':40},
-		req:{'smelting':true, 'science':10},
+		cost:{'insight':40, 'science':10},
+		req:{'smelting':true},
 		effects:[
 		],
 	});
