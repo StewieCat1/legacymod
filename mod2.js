@@ -2237,7 +2237,7 @@ func:function()
 			{type:'provide',what:{'housing':12}},
 			{type:'waste',chance:0.01/1000}
 		],
-		req:{'construction':true},
+		req:{'sand melting':true},
 		category:'housing',
 	});
 	new G.Unit({
@@ -2251,7 +2251,7 @@ func:function()
 			{type:'provide',what:{'housing':20}},
 			{type:'waste',chance:0.003/1000}
 		],
-		req:{'construction':true},
+		req:{'concrete pouring':true},
 		category:'housing',
 	});
 	new G.Unit({
@@ -2279,7 +2279,7 @@ func:function()
 			{type:'provide',what:{'housing':30}},
 			{type:'waste',chance:0.0003/1000}
 		],
-		req:{'city planning':true},
+		req:{'multi-story construction':true},
 		category:'housing',
 	});
 	
@@ -2339,7 +2339,7 @@ func:function()
 			{type:'provide',what:{'added material storage':50000}},
 			{type:'waste',chance:0.0001/1000}
 		],
-		req:{'stockpiling':true,'construction':true},
+		req:{'stockpiling':true,'multi-story construction':true},
 		category:'storage',
 	});
 	new G.Unit({
@@ -2383,7 +2383,7 @@ func:function()
 			{type:'provide',what:{'added food storage':50000}},
 			{type:'waste',chance:0.0001/1000}
 		],
-		req:{'stockpiling':true,'carpentry':true},
+		req:{'stockpiling':true,'sand melting':true},
 		category:'storage',
 	});
 	
@@ -2825,11 +2825,21 @@ func:function()
 		chance:3,
 	});
 	new G.Tech({
+		name:'multi-story construction',
+		desc:'@unlocks [large apartment complex]es@unlocks [large warehouse]s (with [stockpiling])<>',
+		icon:[30,7],
+		cost:{'insight':40, 'science':15},
+		req:{'city planning':true,'sand melting':true,'concrete pouring':true,'masonry':true},
+		effects:[
+		],
+		chance:3,
+	});
+	new G.Tech({
 		name:'city planning',
 		desc:'@unlocks [architect]s@unlocks [apartment building]s<>',
 		icon:[22,8],
 		cost:{'insight':25, 'science':10},
-		req:{'construction':true,'cities':true},
+		req:{'construction':true,'sand melting':true},
 		effects:[
 		],
 	});
@@ -3224,7 +3234,7 @@ func:function()
 		desc:'@unlocks [concrete mixer]s, who produce [concrete] out of [limestone] and [water].<>',
 		icon:[25,6],
 		cost:{'insight':40, 'science':10},
-		req:{'quarrying':true},
+		req:{'quarrying':true,'masonry':true},
 		effects:[
 		],
 	});
