@@ -180,10 +180,9 @@ func:function()
 		{
 			var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
 			happiness=Math.max(-2,Math.min(2,happiness));
-			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
-			else mult=1/(Math.pow(2,-happiness+1)/2);
+			mult=(Math.pow(2,happiness));
 			if (G.has('laziness')) {mult*=0.85;G.gain('happiness',G.getRes('population').amount*0.1,'free time');};
-			else if (G.has('work ethic')) {mult*=1.15;G.gain('happiness',-G.getRes('population').amount*0.1,'boredom');};
+			if (G.has('work ethic')) {mult*=1.15;G.gain('happiness',-G.getRes('population').amount*0.1,'boredom');};
 		}
 		return mult;
 	}
