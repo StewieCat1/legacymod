@@ -3231,10 +3231,10 @@ func:function()
 	});
 	new G.Tech({
 		name:'concrete pouring',
-		desc:'@unlocks [concrete mixer]s, who produce [concrete] out of [limestone] and [water].<>',
+		desc:'@unlocks [concrete mixer]s, who produce [concrete] out of [limestone] and [water].@unlocks [duplex]es.<>',
 		icon:[25,6],
 		cost:{'insight':40, 'science':10},
-		req:{'quarrying':true,'masonry':true},
+		req:{'quarrying':true,'masonry':true,'sand melting':true},
 		effects:[
 		],
 	});
