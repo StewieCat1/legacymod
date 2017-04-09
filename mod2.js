@@ -3276,7 +3276,7 @@ func:function()
 		name:'ritual necrophagy',
 		desc:'@[corpse]s are slowly turned into [meat] and [bone]s, creating some [faith] but harming [health]',
 		icon:[18,1],
-		cost:{'culture':5},
+		cost:{'culture':10},
 		chance:500,
 		req:{'tribalism':true,'ritualism':true},
 	});
@@ -3316,6 +3316,7 @@ func:function()
 		name:'insect-eating',
 		desc:'@your people are no longer unhappy when eating [bugs]',
 		icon:[8,11,22,1],
+		cost:{'culture':5},
 		chance:5,
 		req:{'insects as food':'on'},
 		effects:[
