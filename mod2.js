@@ -1865,7 +1865,7 @@ func:function()
 		desc:'@processes goods with fire<>A [kiln] is an impressive edifice for those not yet accustomed to its roaring fire.',//TODO : desc
 		icon:[23,2],
 		cost:{'archaic building materials':50,'basic building materials':20},
-		use:{'land':1},
+		use:{'land':2},
 		//require:{'worker':1,'stone tools':1},
 		//upkeep:{'stick':3},//TODO : some fuel system
 		modes:{
@@ -1920,7 +1920,7 @@ func:function()
 		desc:'@carves [cut stone] out of the ground@may find other minerals such as [limestone] and [marble]<>The [quarry] dismantles the ground we stand on so that our children may reach higher heights.',
 		icon:[22,3],
 		cost:{'archaic building materials':100},
-		use:{'land':2},
+		use:{'land':4},
 		//require:{'worker':3,'stone tools':3},
 		modes:{
 			'off':G.MODE_OFF,
@@ -1943,7 +1943,7 @@ func:function()
 		desc:'@extracts ores, [coal] and [stone] out of the ground@may occasionally collapse<>The workers in [mine]s burrow deep into the earth to provide all kinds of minerals.',
 		icon:[22,2],
 		cost:{'archaic building materials':100},
-		use:{'land':2},
+		use:{'land':3},
 		//require:{'worker':3,'stone tools':3},
 		modes:{
 			'off':G.MODE_OFF,
@@ -1977,7 +1977,7 @@ func:function()
 		desc:'@converts metal ores into ingots that can be used for further crafting<>The [furnace] is employed in various processes to extract the metal in raw ore, as well as for alloying those metals.',
 		icon:[24,2],
 		cost:{'basic building materials':100},
-		use:{'land':1},
+		use:{'land':2},
 		//require:{'worker':2,'stone tools':2},
 		modes:{
 			'off':G.MODE_OFF,
@@ -2006,7 +2006,7 @@ func:function()
 		desc:'@forges metal goods out of ingots<>The [blacksmith workshop,Blacksmith] takes the same pride in shaping the tool that tills as they do the sword that slays.',
 		icon:[26,2,25,2],
 		cost:{'basic building materials':100},
-		use:{'land':1},
+		use:{'land':2},
 		//require:{'worker':2,'stone tools':2},
 		modes:{
 			'off':G.MODE_OFF,
@@ -2049,7 +2049,7 @@ func:function()
 		desc:'@processes wood<>The [carpenter workshop,Carpenter] is equipped with all kinds of tools to coerce wood into more useful shapes.',
 		icon:[27,2,25,2],
 		cost:{'basic building materials':100},
-		use:{'land':1},
+		use:{'land':2},
 		//require:{'worker':2,'stone tools':2},
 		modes:{
 			'off':G.MODE_OFF,
@@ -2137,7 +2137,7 @@ func:function()
 		desc:'@provides 1 [burial spot], in which the [corpse,dead] are automatically interred one by one@graves with buried corpses decay over time, freeing up land for more graves<>A simple grave dug into the earth, where the dead may find rest.//Burying your dead helps prevent [health,disease] and makes your people slightly [happiness,happier].',
 		icon:[13,2],
 		cost:{},
-		use:{'land':0.25},
+		use:{'land':0.5},
 		//require:{'worker':1,'knapped tools':1},
 		effects:[
 			{type:'provide',what:{'burial spot':1}},
@@ -2189,7 +2189,7 @@ func:function()
 		desc:'@provides 6 [housing]<>Small dwelling built out of hardened mud and branches.',
 		icon:[11,2],
 		cost:{'archaic building materials':100},
-		use:{'land':1},
+		use:{'land':2},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'housing':6}},
@@ -2203,7 +2203,7 @@ func:function()
 		desc:'@provides 8 [housing]<>A simple home for a family of villagers.',
 		icon:[20,3],
 		cost:{'basic building materials':75},
-		use:{'land':1},
+		use:{'land':2},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'housing':8}},
@@ -2217,7 +2217,7 @@ func:function()
 		desc:'@provides 10 [housing]<>A sturdy home built to last.',
 		icon:[21,3],
 		cost:{'basic building materials':100},
-		use:{'land':1},
+		use:{'land':2},
 		//require:{'worker':3,'metal tools':3},
 		effects:[
 			{type:'provide',what:{'housing':10}},
@@ -2231,7 +2231,7 @@ func:function()
 		desc:'@provides 12 [housing]<>A more modern home that can hold a large family.',
 		icon:[21,3],
 		cost:{'advanced building materials':100},
-		use:{'land':1},
+		use:{'land':5},
 		//require:{'worker':3,'metal tools':3},
 		effects:[
 			{type:'provide',what:{'housing':12}},
@@ -2245,7 +2245,7 @@ func:function()
 		desc:'@provides 30 [housing]<>A large building that can hold several families.',
 		icon:[21,3],
 		cost:{'advanced building materials':250},
-		use:{'land':2},
+		use:{'land':12},
 		//require:{'worker':3,'metal tools':3},
 		effects:[
 			{type:'provide',what:{'housing':30}},
@@ -2275,7 +2275,7 @@ func:function()
 		desc:'@provides 2500 [material storage]<>A simple building where resources are stored.//Slows material decay and deters theft somewhat, but may itself decay over time.',
 		icon:[22,4],
 		cost:{'basic building materials':100},
-		use:{'land':1},
+		use:{'land':2},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'added material storage':2500}},
@@ -2290,7 +2290,7 @@ func:function()
 		icon:[25,4],
 		cost:{'advanced building materials':250},
 		use:{'land':2},
-		staff:{'worker':2},
+		staff:{'worker':4},
 		//require:{'worker':3,'stone tools':3},
 		effects:[
 			{type:'provide',what:{'added material storage':10000}},
@@ -2304,7 +2304,7 @@ func:function()
 		desc:'@provides 2500 [food storage]<>A grain storage building built on stilts to prevent pests from getting in.',
 		icon:[23,4],
 		cost:{'basic building materials':75,'pot':15},
-		use:{'land':1},
+		use:{'land':2},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'added food storage':2500}},
@@ -2318,7 +2318,7 @@ func:function()
 		desc:'@provides 10000 [food storage]<>A large wooden building for storing food. A worker manages the grain to prevent rot.',
 		icon:[24,4],
 		cost:{'basic building materials':1000},
-		use:{'land':2},
+		use:{'land':4},
 		staff:{'worker':1},
 		//require:{'worker':2,'stone tools':2},
 		effects:[
