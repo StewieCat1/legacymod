@@ -2217,7 +2217,7 @@ func:function()
 		desc:'@provides 10 [housing]<>A sturdy home built to last.',
 		icon:[21,3],
 		cost:{'basic building materials':100},
-		use:{'land':2},
+		use:{'land':3},
 		//require:{'worker':3,'metal tools':3},
 		effects:[
 			{type:'provide',what:{'housing':10}},
@@ -2231,7 +2231,7 @@ func:function()
 		desc:'@provides 12 [housing]<>A more modern home that can hold a large family.',
 		icon:[21,3],
 		cost:{'advanced building materials':100},
-		use:{'land':5},
+		use:{'land':3},
 		//require:{'worker':3,'metal tools':3},
 		effects:[
 			{type:'provide',what:{'housing':12}},
@@ -2241,15 +2241,43 @@ func:function()
 		category:'housing',
 	});
 	new G.Unit({
-		name:'apartment building',
-		desc:'@provides 30 [housing]<>A large building that can hold several families.',
+		name:'duplex',
+		desc:'@provides 20 [housing]<>A larger modern home that can hold two families.',
 		icon:[21,3],
-		cost:{'advanced building materials':250},
-		use:{'land':12},
+		cost:{'advanced building materials':200},
+		use:{'land':5},
+		//require:{'worker':3,'metal tools':3},
+		effects:[
+			{type:'provide',what:{'housing':20}},
+			{type:'waste',chance:0.003/1000}
+		],
+		req:{'construction':true},
+		category:'housing',
+	});
+	new G.Unit({
+		name:'apartment building',
+		desc:'@provides 40 [housing]<>A large building that can hold several families.',
+		icon:[21,3],
+		cost:{'advanced building materials':500},
+		use:{'land':8},
 		//require:{'worker':3,'metal tools':3},
 		effects:[
 			{type:'provide',what:{'housing':30}},
 			{type:'waste',chance:0.001/1000}
+		],
+		req:{'city planning':true},
+		category:'housing',
+	});
+	new G.Unit({
+		name:'large apartment complex',
+		desc:'@provides 100 [housing]<>A giant building that can squeeze in many families.',
+		icon:[21,3],
+		cost:{'advanced building materials':2000},
+		use:{'land':12},
+		//require:{'worker':3,'metal tools':3},
+		effects:[
+			{type:'provide',what:{'housing':30}},
+			{type:'waste',chance:0.0003/1000}
 		],
 		req:{'city planning':true},
 		category:'housing',
@@ -2300,6 +2328,21 @@ func:function()
 		category:'storage',
 	});
 	new G.Unit({
+		name:'large warehouse',
+		desc:'@provides 50000 [material storage]<>A giant building for storing materials. Staffed with five guards to prevent theft.',
+		icon:[25,4],
+		cost:{'advanced building materials':1000},
+		use:{'land':8},
+		staff:{'worker':5},
+		//require:{'worker':3,'stone tools':3},
+		effects:[
+			{type:'provide',what:{'added material storage':50000}},
+			{type:'waste',chance:0.0001/1000}
+		],
+		req:{'stockpiling':true,'construction':true},
+		category:'storage',
+	});
+	new G.Unit({
 		name:'granary',
 		desc:'@provides 2500 [food storage]<>A grain storage building built on stilts to prevent pests from getting in.',
 		icon:[23,4],
@@ -2324,6 +2367,21 @@ func:function()
 		effects:[
 			{type:'provide',what:{'added food storage':10000}},
 			{type:'waste',chance:0.001/1000}
+		],
+		req:{'stockpiling':true,'carpentry':true},
+		category:'storage',
+	});
+	new G.Unit({
+		name:'greenhouse',
+		desc:'@provides 50000 [food storage]<>A large glass building for storing food. Three workers manage conditions to prevent rot.',
+		icon:[24,4],
+		cost:{'advanced building materials':1000},
+		use:{'land':8},
+		staff:{'worker':3},
+		//require:{'worker':2,'stone tools':2},
+		effects:[
+			{type:'provide',what:{'added food storage':50000}},
+			{type:'waste',chance:0.0001/1000}
 		],
 		req:{'stockpiling':true,'carpentry':true},
 		category:'storage',
@@ -2500,7 +2558,7 @@ func:function()
 		messageOnStart:'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches.',
 		finalStepCost:{'population':100},
 		finalStepDesc:'To complete the Mausoleum, 100 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.',
-		use:{'land':10},
+		use:{'land':50},
 		//require:{'worker':10,'stone tools':10},
 		req:{'monument-building':true},
 		category:'wonder',
