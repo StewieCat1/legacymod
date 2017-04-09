@@ -2289,8 +2289,8 @@ func:function()
 		desc:'@provides 10000 [material storage]<>A large building for storing materials. Staffed with two guards to prevent theft.',
 		icon:[25,4],
 		cost:{'advanced building materials':250},
-		use:{'land':2},
-		staff:{'worker':4},
+		use:{'land':4},
+		staff:{'worker':2},
 		//require:{'worker':3,'stone tools':3},
 		effects:[
 			{type:'provide',what:{'added material storage':10000}},
