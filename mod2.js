@@ -2262,7 +2262,7 @@ func:function()
 		use:{'land':8},
 		//require:{'worker':3,'metal tools':3},
 		effects:[
-			{type:'provide',what:{'housing':30}},
+			{type:'provide',what:{'housing':40}},
 			{type:'waste',chance:0.001/1000}
 		],
 		req:{'city planning':true},
@@ -2276,7 +2276,7 @@ func:function()
 		use:{'land':12},
 		//require:{'worker':3,'metal tools':3},
 		effects:[
-			{type:'provide',what:{'housing':30}},
+			{type:'provide',what:{'housing':100}},
 			{type:'waste',chance:0.0003/1000}
 		],
 		req:{'multi-story construction':true},
